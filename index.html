@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Al Amanah/Zavier Cell - POS & Protected Finance System</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+tailwind.config={darkMode:'class',theme:{extend:{colors:{dark:{base:'#070a10',card:'#121824',border:'#1f293d',hover:'#1a2336'},gold:{300:'#fde047',400:'#fbbf24',500:'#d4af37',600:'#b8860b',700:'#855808'},emerald:{glow:'#059669',luxury:'#10b981'},ruby:{glow:'#dc2626',luxury:'#ef4444'}},fontFamily:{sans:['Plus Jakarta Sans','sans-serif']}}}};
+</script>
+<style>
+:root{--royal:#4d9de0;--royal-deep:#123d70;--royal-mid:#2476bd;--silver:#edf7ff;--pearl:#fff;--ink:#17324f}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:radial-gradient(ellipse at 12% 0%,rgba(107,190,255,.28),transparent 36%),radial-gradient(ellipse at 90% 18%,rgba(90,150,235,.20),transparent 34%),linear-gradient(145deg,#fff 0%,#edf6ff 48%,#f9fcff 100%)!important;color:var(--ink)!important;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+.glass-panel{background:linear-gradient(132deg,rgba(255,255,255,.88) 0%,rgba(239,248,255,.72) 42%,rgba(205,231,255,.62) 100%),linear-gradient(25deg,rgba(70,157,235,.10),rgba(255,255,255,.35))!important;border:1px solid rgba(255,255,255,.88)!important;box-shadow:0 14px 32px rgba(20,91,165,.15),0 0 0 1px rgba(81,169,255,.20),inset 0 2px 2px rgba(255,255,255,.98),inset 0 -2px 6px rgba(64,145,220,.14)!important;backdrop-filter:blur(26px) saturate(160%);-webkit-backdrop-filter:blur(26px) saturate(160%)}
+.gold-banner-card{background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.28),transparent 60%),linear-gradient(145deg,#72c3f7 0%,#287fca 48%,#123d70 100%)!important;border:1px solid rgba(255,255,255,.76)!important;color:#fff!important;box-shadow:0 12px 30px rgba(24,75,125,.19),0 0 20px rgba(88,166,235,.14),inset 0 1.5px 2px rgba(255,255,255,.28)!important}
+.gold-border-glow{border-color:rgba(73,143,205,.30)!important;box-shadow:0 4px 16px rgba(37,102,160,.08),inset 0 1px 0 rgba(255,255,255,.70)!important}
+.bg-gold-gradient,button.bg-gold-gradient,.bg-green-600,button.bg-green-600{background:linear-gradient(135deg,#bce7ff 0%,#4d9de0 42%,#1e5f9e 100%)!important;color:#fff!important;border:1px solid rgba(255,255,255,.76)!important;box-shadow:0 5px 14px rgba(20,91,165,.18),inset 0 2px 2px rgba(255,255,255,.62),inset 0 -2px 3px rgba(0,44,130,.12)!important}
+.text-gold-gradient{background:linear-gradient(135deg,#fff 0%,#e6f5ff 34%,#bce7ff 68%,#fff 100%)!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;filter:drop-shadow(0 2px 9px rgba(18,61,112,.24))!important}
+[class*="bg-dark-base"],[class*="bg-dark-card"],[class*="bg-dark-hover"]{background-color:rgba(247,251,255,.97)!important}
+[class*="border-dark-border"]{border-color:rgba(73,143,205,.20)!important}
+[class*="border-gold-"]{border-color:rgba(73,143,205,.28)!important}
+[class*="bg-gold-"]{background-color:rgba(112,190,245,.19)!important}
+[class*="text-gold-"],[class*="text-emerald-"]{color:#2476bd!important}
+[class*="border-emerald-"]{border-color:rgba(73,143,205,.28)!important}
+[class*="bg-emerald-"]{background-color:rgba(112,190,245,.18)!important}
+input,select,textarea{background-color:rgba(255,255,255,.96)!important;color:#17324f!important;border-color:rgba(73,143,205,.30)!important}
+input::placeholder,textarea::placeholder{color:rgba(46,88,126,.52)!important}
+input:focus,select:focus,textarea:focus{border-color:#4d9de0!important;box-shadow:0 0 0 2px rgba(77,157,224,.18),0 0 14px rgba(77,157,224,.10)!important;outline:none!important}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:#edf6ff!important}::-webkit-scrollbar-thumb{background:linear-gradient(#bce7ff,#2476bd)!important;border-radius:6px}
+header.gold-banner-card{position:relative;isolation:isolate;border-radius:28px!important;padding:16px!important;backdrop-filter:blur(24px) saturate(135%);-webkit-backdrop-filter:blur(24px) saturate(135%)}
+header.gold-banner-card::after{content:'';position:absolute;inset:1px;border-radius:27px;border:1px solid rgba(255,255,255,.48);pointer-events:none;z-index:-1}
+header.gold-banner-card>.absolute.top-0{height:2px!important;opacity:.85;background:linear-gradient(90deg,transparent,rgba(255,255,255,.95),rgba(191,229,255,.9),transparent)!important}
+header.gold-banner-card h1{font-family:'Outfit','Plus Jakarta Sans',sans-serif!important;font-size:clamp(13px,3.8vw,21px)!important;font-weight:900!important;letter-spacing:.005em!important;line-height:1.1!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;display:block;max-width:100%;text-shadow:0 2px 12px rgba(0,0,0,.22)}
+.phone-glow{filter:drop-shadow(0 0 8px rgba(147,210,255,.65))}
+.glass-panel [class*="text-gray-300"],.glass-panel [class*="text-gray-400"],.glass-panel [class*="text-gray-500"]{color:#46627d!important}
+.glass-panel [class*="text-white"]{color:#173b5d!important}
+.glass-panel [class*="text-emerald-300"]{color:#1769aa!important}
+.glass-panel [class*="text-ruby-luxury"]{color:#c6283d!important}
+.glass-panel button{text-shadow:none!important}
+.glass-panel input,.glass-panel select,.glass-panel textarea{color:#17324f!important;opacity:1!important;background:linear-gradient(135deg,rgba(255,255,255,.88),rgba(231,244,255,.72))!important;border:1px solid rgba(92,167,230,.48)!important;box-shadow:inset 0 2px 5px rgba(43,111,174,.06),0 1px 0 rgba(255,255,255,.9)!important}
+.glass-panel h2,.glass-panel h3,.glass-panel h4,.glass-panel label,.glass-panel th{color:#173b5d}
+nav.glass-panel{background:linear-gradient(135deg,rgba(255,255,255,.88),rgba(220,239,255,.80))!important;border:1px solid rgba(255,255,255,.92)!important;box-shadow:0 -8px 26px rgba(20,91,165,.15),inset 0 2px 2px rgba(255,255,255,.96)!important}
+nav .nav-btn{color:#6885a2!important}nav .nav-btn.text-gold-400,nav .nav-btn:hover{color:#2476bd!important}
+@media print{body *{visibility:hidden}#printable-receipt,#printable-receipt *{visibility:visible}#printable-receipt{position:absolute;left:0;top:0;width:100%;color:#000;background:#fff;padding:10px;font-size:11px}}
+/* ===== SAPPHIRE REFINEMENT: logo HP, gembok, tag mode, judul ===== */
+#page-title{color:#123d70!important;text-shadow:0 1px 0 rgba(255,255,255,.55)}
+.logo-sapphire-box{background:linear-gradient(145deg,#ffffff 0%,#cfeaff 36%,#4d9de0 70%,#123d70 100%)!important;border:1px solid rgba(255,255,255,.92)!important;box-shadow:0 10px 24px rgba(18,61,112,.30),0 0 0 1px rgba(120,190,255,.45),inset 0 2px 3px rgba(255,255,255,.95),inset 0 -3px 8px rgba(18,61,112,.35)!important}
+.lock-kasir{color:#fcd34d!important}
+.lock-admin{color:#6ee7b7!important}
+.role-lock-icon{filter:drop-shadow(0 1px 3px rgba(0,0,0,.35))}
+.role-pill{white-space:nowrap!important;display:inline-flex!important;align-items:center!important;gap:.25rem!important;line-height:1!important;padding:.22rem .6rem!important;border-radius:9999px!important;font-weight:800!important;font-size:9px!important;letter-spacing:.02em!important}
+.role-pill-kasir{color:#123d70!important;background:linear-gradient(135deg,rgba(188,231,255,.60),rgba(77,157,224,.20))!important;border:1px solid rgba(36,118,189,.45)!important;box-shadow:0 2px 8px rgba(36,118,189,.15),inset 0 1px 0 rgba(255,255,255,.85)!important}
+.role-pill-admin{color:#0f5132!important;background:linear-gradient(135deg,rgba(16,185,129,.24),rgba(5,150,105,.10))!important;border:1px solid rgba(5,150,105,.45)!important;box-shadow:0 2px 8px rgba(5,150,105,.18),inset 0 1px 0 rgba(255,255,255,.70)!important}
+</style>
+</head>
+<body class="min-h-screen pb-20 pt-2 antialiased selection:bg-purple-500 selection:text-white">
+<div class="px-3 max-w-lg mx-auto space-y-3">
+<header class="gold-banner-card rounded-2xl p-3.5 relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/80 to-transparent"></div>
+<div class="flex items-center justify-between pb-2 mb-2 border-b border-white/20 text-[10px]">
+  <button type="button" onclick="toggleAdminRole()" aria-label="Ubah mode admin/kasir" class="inline-flex items-center justify-center w-8 h-8 shrink-0 bg-white/10 border border-white/25 rounded-lg backdrop-blur-md transition-all active:scale-90 hover:bg-white/20">
+    <i id="role-status-icon" class="fa-solid fa-lock text-[15px] lock-kasir role-lock-icon"></i>
+  </button>
+  <div class="flex items-center justify-end gap-1.5 font-medium min-w-0">
+    <span id="banner-date" class="inline-flex items-center gap-1 whitespace-nowrap text-[9px] bg-white/15 px-2 py-1 rounded-lg border border-white/20 text-white/90"><i class="fa-regular fa-calendar-check text-white"></i><span>--</span></span>
+    <span id="banner-clock" class="font-mono text-white font-bold text-[9px] whitespace-nowrap bg-white/15 px-2 py-1 rounded-lg border border-white/20">00:00:00</span>
+    <button type="button" onclick="openCloudLoginModal()" title="Login akun cloud" aria-label="Login akun cloud" class="flex items-center justify-center w-8 h-8 shrink-0 rounded-xl border border-white/30 text-white bg-white/15 shadow-sm active:scale-95"><i class="fa-solid fa-cloud-arrow-up text-[11px]"></i></button>
+  </div>
+</div>
+<div class="flex items-center gap-3">
+  <div class="logo-sapphire-box w-12 h-12 p-1.5 rounded-2xl flex items-center justify-center flex-shrink-0 relative group">
+    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="1.5" width="14" height="21" rx="3" fill="url(#sapphireBody)" stroke="#fff" stroke-width="0.6"/>
+      <rect x="6.5" y="4" width="11" height="15" rx="1.5" fill="#0b2545"/>
+      <path d="M7 5.5L16 14.5" stroke="rgba(255,255,255,0.35)" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M10 4.5L16.5 11" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
+      <circle cx="10" cy="2.8" r="0.6" fill="#0b2545"/><rect x="11.5" y="2.5" width="3" height="0.6" rx="0.3" fill="#0b2545"/>
+      <circle cx="12" cy="20.2" r="0.9" fill="url(#sapphireBtn)" stroke="#bce7ff" stroke-width="0.3"/>
+      <defs>
+        <linearGradient id="sapphireBody" x1="5" y1="1.5" x2="19" y2="22.5" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ffffff"/><stop offset="32%" stop-color="#bce7ff"/><stop offset="68%" stop-color="#4d9de0"/><stop offset="100%" stop-color="#123d70"/></linearGradient>
+        <linearGradient id="sapphireBtn" x1="11" y1="19.3" x2="13" y2="21.1" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#eaf6ff"/><stop offset="100%" stop-color="#2476bd"/></linearGradient>
+      </defs>
+    </svg>
+  </div>
+  <div class="flex-1 min-w-0">
+    <div class="flex items-center gap-1.5"><span class="px-1.5 py-0.5 bg-white/15 border border-white/30 text-white text-[8px] font-extrabold rounded uppercase tracking-widest">VIP CELL STORE</span><span class="text-[9px] text-white/80 font-semibold truncate">Cellular &amp; Financial POS</span></div>
+    <h1 class="text-xl font-black text-white tracking-tight leading-tight uppercase truncate" style="text-shadow:0 2px 10px rgba(0,0,0,.28)">Al Amanah/Zavier Cell</h1>
+  </div>
+</div>
+<div id="header-balance-box" class="mt-3 pt-2 border-t border-white/20 flex items-center justify-between bg-white/12 rounded-xl px-2.5 py-2">
+  <div class="flex flex-col"><span class="text-[9px] text-white/80 uppercase font-semibold">Total Saldo Semua Akun</span><span class="text-base font-extrabold text-white tracking-tight" id="top-balance">Rp 0</span></div>
+  <button onclick="resetDataPrompt()" id="btn-reset-data" title="Reset Data" class="hidden px-2 py-1 rounded-lg bg-white/15 border border-white/30 text-white flex items-center gap-1 text-[10px] font-bold hover:bg-white/25"><i class="fa-solid fa-rotate-right text-[10px]"></i> Reset</button>
+</div>
+</header>
+
+<div class="flex items-center justify-between px-1 gap-2">
+<h2 id="page-title" class="text-xs font-black tracking-widest uppercase flex items-center gap-1.5 truncate"><i class="fa-solid fa-layer-group" style="color:#2476bd"></i> Kasir POS Toko</h2>
+<span id="role-view-tag" class="role-pill role-pill-kasir shrink-0">Mode Kasir</span>
+</div>
+
+<section id="view-dashboard" class="tab-content hidden space-y-2.5">
+<div class="grid grid-cols-2 gap-2">
+<div class="glass-panel p-2.5 rounded-xl gold-border-glow"><div class="flex justify-between items-center text-gray-400 text-[9px] font-bold uppercase"><span>Laba Kotor</span><i class="fa-solid fa-chart-simple text-emerald-400"></i></div><h3 class="text-xs sm:text-sm font-extrabold text-emerald-300 mt-1 truncate" id="dash-laba-kotor">Rp 0</h3><p class="text-[8px] text-gray-500 mt-0.5">Omzet penjualan dikurangi HPP</p></div>
+<div class="glass-panel p-2.5 rounded-xl gold-border-glow"><div class="flex justify-between items-center text-gray-400 text-[9px] font-bold uppercase"><span>Laba Bersih</span><i class="fa-solid fa-chart-line text-emerald-luxury"></i></div><h3 class="text-xs sm:text-sm font-extrabold text-emerald-400 mt-1 truncate" id="dash-laba">Rp 0</h3><p class="text-[8px] text-gray-500 mt-0.5">Keuntungan Bersih Toko</p></div>
+<div class="glass-panel p-2.5 rounded-xl gold-border-glow"><div class="flex justify-between items-center text-gray-400 text-[9px] font-bold uppercase"><span>Uang Masuk</span><i class="fa-solid fa-arrow-down-left text-emerald-400"></i></div><h3 class="text-xs sm:text-sm font-extrabold text-emerald-300 mt-1 truncate" id="dash-masuk">Rp 0</h3><p class="text-[8px] text-emerald-400/80 mt-0.5">POS + Tarik Tunai + Kas IN</p></div>
+<div class="glass-panel p-2.5 rounded-xl gold-border-glow"><div class="flex justify-between items-center text-gray-400 text-[9px] font-bold uppercase"><span>Uang Keluar</span><i class="fa-solid fa-arrow-up-right text-ruby-luxury"></i></div><h3 class="text-xs sm:text-sm font-extrabold text-ruby-luxury mt-1 truncate" id="dash-keluar">Rp 0</h3><p class="text-[8px] text-ruby-luxury/80 mt-0.5">Pengeluaran usaha dan biaya terkait</p></div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="glass-panel p-2 rounded-xl border-gold-500/20"><span class="text-[8px] text-gray-400 font-bold uppercase block">Komisi Transfer</span><p class="text-xs font-bold text-gold-300 mt-0.5" id="dash-admin-tf">Rp 0</p></div>
+<div class="glass-panel p-2 rounded-xl border-gold-500/20"><span class="text-[8px] text-gray-400 font-bold uppercase block">Admin Tarik Tunai</span><p class="text-xs font-bold text-gold-300 mt-0.5" id="dash-admin-tarik">Rp 0</p></div>
+</div>
+<div class="glass-panel p-2.5 rounded-xl"><h3 class="font-bold text-white text-xs mb-1.5 flex items-center justify-between"><span>Grafik Ringkasan Kas</span><span class="text-[9px] text-gray-400 font-normal">Realtime Data</span></h3><div class="h-36"><canvas id="cashflowChart"></canvas></div></div>
+</section>
+
+<section id="view-pos" class="tab-content space-y-2.5">
+<div class="glass-panel p-2 rounded-xl space-y-1.5">
+<div class="relative"><i class="fa-solid fa-magnifying-glass absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-500 text-[10px]"></i><input type="text" id="pos-search" oninput="renderPOSProducts()" placeholder="Cari pulsa, data, aksesoris..." class="w-full bg-dark-base border border-gray-800 rounded-lg pl-7 pr-2.5 py-1 text-xs text-white focus:outline-none focus:border-gold-500"></div>
+<div id="pos-categories" class="flex gap-1 overflow-x-auto pb-0.5 text-xs"></div>
+</div>
+<div id="pos-products-grid" class="grid grid-cols-2 gap-2 max-h-52 overflow-y-auto pr-0.5"></div>
+<div class="glass-panel p-2.5 rounded-xl border-gold-500/30 space-y-2">
+<div class="flex items-center justify-between border-b border-gray-800 pb-1.5"><h3 class="font-bold text-white text-xs flex items-center gap-1.5"><i class="fa-solid fa-cart-shopping text-gold-400"></i> Keranjang Kasir</h3><button onclick="clearCart()" class="text-[9px] text-ruby-luxury hover:underline font-semibold">Kosongkan</button></div>
+<div id="cart-items" class="space-y-1 max-h-32 overflow-y-auto"></div>
+<div class="border-t border-gray-800 pt-2 space-y-2">
+<div class="flex justify-between text-xs font-bold text-white"><span>Total Bayar:</span><span id="cart-total" class="text-gold-400 text-sm font-black">Rp 0</span></div>
+<div class="grid grid-cols-2 gap-2">
+<div><label class="block text-[8px] text-gray-400 mb-0.5 uppercase">Metode Bayar</label><select id="pos-payment-method" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"><option value="Tunai">Tunai / Cash</option><option value="Transfer Bank">Transfer Bank</option><option value="QRIS">QRIS / E-Wallet</option></select></div>
+<div><label class="block text-[8px] text-gray-400 mb-0.5 uppercase">Uang Diterima</label><input type="text" id="cart-pay-amount" oninput="formatNominalInput(this); calculateChange()" placeholder="0" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white" inputmode="numeric" autocomplete="off"></div>
+</div>
+<div><label class="block text-[8px] text-gray-400 mb-0.5 uppercase">Akun penerima pembayaran</label><select id="pos-account" class="account-select w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"><option value="">Pilih akun (opsional)</option></select></div>
+<div class="flex justify-between items-center text-xs"><span class="text-gray-400 text-[10px]">Kembalian:</span><span id="cart-change" class="font-bold text-emerald-400">Rp 0</span></div>
+<div class="space-y-1.5">
+<button onclick="processCheckout()" class="w-full py-2 rounded-xl bg-gold-gradient text-dark-base font-extrabold text-xs shadow-md shadow-gold-500/20 flex items-center justify-center gap-1.5"><i class="fa-solid fa-money-bill-wave"></i> BAYAR / SIMPAN TRANSAKSI</button>
+<button type="button" onclick="shareReceiptWhatsAppImage()" class="w-full py-2 rounded-xl bg-green-600 hover:bg-green-500 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-md"><i class="fa-brands fa-whatsapp"></i> KIRIM STRUK KE WA</button>
+</div>
+</div>
+</div>
+</section>
+
+<section id="view-cashflow" class="tab-content hidden space-y-2.5">
+<div class="glass-panel p-2.5 rounded-xl">
+<h3 class="font-bold text-white text-xs mb-2 flex items-center gap-1.5"><i class="fa-solid fa-file-invoice text-gold-400"></i> Catat Uang Masuk / Kas Out Operasional</h3>
+<form id="form-cash-flow" onsubmit="saveCashFlow(event)" class="space-y-1.5">
+<div class="grid grid-cols-2 gap-2">
+<div><label class="block text-[8px] text-gray-400">Jenis Kas</label><select id="cf-type" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"><option value="IN">Uang Masuk (Pemasukan Lain)</option><option value="OUT">Uang Keluar (Kas Out / Operasional)</option></select></div>
+<div><label class="block text-[8px] text-gray-400">Jumlah (Rp)</label><input type="text" id="cf-amount" required placeholder="0" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white" inputmode="numeric" autocomplete="off" oninput="formatNominalInput(this)"></div>
+</div>
+<div><label class="block text-[8px] text-gray-400">Akun yang berubah</label><select id="cf-account" class="account-select w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"><option value="">Pilih akun (opsional)</option></select></div>
+<div><label class="block text-[8px] text-gray-400">Kategori</label><input type="text" id="cf-category" placeholder="Listrik, Kebersihan, Konsumsi..." class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white" required></div>
+<div><label class="block text-[8px] text-gray-400">Keterangan</label><input type="text" id="cf-note" placeholder="Catatan opsional" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+<button type="submit" class="w-full py-1.5 rounded-xl bg-gold-gradient text-dark-base font-bold text-xs">Simpan Kas</button>
+</form>
+</div>
+</section>
+
+<section id="view-products" class="tab-content hidden space-y-2.5">
+<div class="glass-panel p-2.5 rounded-xl">
+<h3 class="font-bold text-white text-xs mb-2 flex items-center gap-1.5"><i class="fa-solid fa-box-open text-gold-400"></i> Tambah / Edit Produk</h3>
+<form id="form-product" onsubmit="saveProduct(event)" class="space-y-1.5">
+<input type="hidden" id="prod-id">
+<div><label class="block text-[8px] text-gray-400">Nama Produk</label><input type="text" id="prod-name" required placeholder="Nama Pulsa / Voucher / Aksesoris" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+<div><label class="block text-[8px] text-gray-400">Jenis Produk</label><select id="prod-type" onchange="toggleProductStockFields()" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"><option value="digital">Pulsa / Jasa Digital (tanpa stok)</option><option value="physical">Barang Fisik (pakai stok)</option></select></div>
+<div><label class="block text-[8px] text-gray-400">Kategori</label><input type="text" id="prod-category" required placeholder="Pulsa, Minuman, Makanan..." class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+<div id="prod-stock-fields" class="hidden rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-2 space-y-2">
+<div class="grid grid-cols-2 gap-2">
+<div><label class="block text-[8px] text-gray-400">Nama satuan ecer</label><input id="prod-unit" value="pcs" placeholder="Botol / pcs" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+<div><label class="block text-[8px] text-gray-400">Nama kemasan</label><input id="prod-pack-name" value="kardus" placeholder="Kardus / pack" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div><label class="block text-[8px] text-gray-400">Isi per kardus/pack</label><input type="number" min="1" id="prod-per-pack" value="1" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+<div><label class="block text-[8px] text-gray-400">Stok utuh (kardus/pack)</label><input type="number" min="0" id="prod-stock-packs" value="0" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div><label class="block text-[8px] text-gray-400">Stok ecer/satuan</label><input type="number" min="0" id="prod-stock-loose" value="0" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+<div><label class="block text-[8px] text-gray-400">Harga jual per kardus/pack (Rp)</label><input type="text" min="0" id="prod-pack-price" value="0" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white" inputmode="numeric" autocomplete="off" oninput="formatNominalInput(this)"></div>
+</div>
+<div><label class="block text-[8px] text-gray-400">Modal per kardus/pack (Rp, opsional)</label><input type="text" min="0" id="prod-pack-hpp" value="0" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white" inputmode="numeric" autocomplete="off" oninput="formatNominalInput(this)"></div>
+<p class="text-[9px] text-emerald-300">Stok total dihitung otomatis dari stok utuh × isi per kemasan + stok ecer.</p>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div><label class="block text-[8px] text-gray-400">Harga Jual (Rp)</label><input type="text" id="prod-price" required placeholder="0" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white" inputmode="numeric" autocomplete="off" oninput="formatNominalInput(this)"></div>
+<div><label class="block text-[8px] text-gray-400">HPP / Modal (Rp)</label><input type="text" id="prod-hpp" required placeholder="0" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white" inputmode="numeric" autocomplete="off" oninput="formatNominalInput(this)"></div>
+</div>
+<button type="submit" class="w-full py-1.5 rounded-xl bg-gold-gradient text-dark-base font-bold text-xs">Simpan Produk</button>
+</form>
+</div>
+<div class="glass-panel p-2.5 rounded-xl overflow-x-auto">
+<h3 class="font-bold text-white text-xs mb-1.5">Katalog Aktif</h3>
+<table class="w-full text-left text-[10px] text-gray-300"><thead class="bg-dark-base text-gray-400 uppercase text-[8px]"><tr><th class="p-1">Item</th><th class="p-1">Harga</th><th class="p-1">Laba</th><th class="p-1 text-right">Aksi</th></tr></thead><tbody id="products-table-body"></tbody></table>
+</div>
+</section>
+
+<section id="view-reports" class="tab-content hidden space-y-2.5">
+<div class="glass-panel p-2.5 rounded-xl space-y-2">
+<div class="flex items-center justify-between"><h3 class="font-bold text-white text-xs flex items-center gap-1.5"><i class="fa-solid fa-clock-rotate-left text-gold-400"></i> Jurnal Transaksi</h3><button onclick="exportCSV()" class="px-2 py-0.5 rounded-lg bg-emerald-luxury/20 border border-emerald-luxury/40 text-emerald-luxury text-[9px] font-bold"><i class="fa-solid fa-file-excel"></i> Ekspor CSV</button></div>
+<div class="flex gap-1.5"><input type="date" id="filter-date-start" onchange="renderReports()" class="w-1/2 bg-dark-base border border-gray-800 rounded-lg p-1 text-[9px] text-white"><input type="date" id="filter-date-end" onchange="renderReports()" class="w-1/2 bg-dark-base border border-gray-800 rounded-lg p-1 text-[9px] text-white"></div>
+<div class="glass-panel rounded-lg p-2 border border-emerald-500/20 flex items-center justify-between"><span class="text-[10px] font-bold text-gray-300">Jumlah Keseluruhan Jurnal</span><strong id="reports-total-amount" class="text-xs font-extrabold text-emerald-300">Rp 0</strong></div>
+<div class="overflow-x-auto max-h-64"><table class="w-full text-left text-[10px] text-gray-300"><thead class="bg-dark-base text-gray-400 uppercase text-[8px]"><tr><th class="p-1">Tipe</th><th class="p-1">Detail</th><th class="p-1">Nominal</th><th class="p-1 text-right">Hapus</th></tr></thead><tbody id="reports-table-body"></tbody></table></div>
+</div>
+</section>
+
+<section id="view-accounts" class="tab-content hidden space-y-2.5">
+<div class="glass-panel p-3 rounded-xl border-gold-500/30 space-y-2">
+<div class="flex items-center justify-between border-b border-gray-800 pb-2"><h3 class="font-bold text-white text-xs"><i class="fa-solid fa-wallet text-gold-400 mr-1"></i> Saldo Bank & E-Wallet</h3><span class="text-[8px] text-gold-300">Buku saldo manual</span></div>
+<div class="grid grid-cols-2 gap-2">
+<div class="rounded-lg bg-dark-base p-2 border border-gold-500/20"><p class="text-[9px] text-gray-400">Total seluruh akun</p><b id="accounts-total" class="text-sm text-gold-300">Rp 0</b></div>
+<div class="rounded-lg bg-dark-base p-2 border border-gold-500/20"><p class="text-[9px] text-gray-400">Jumlah akun</p><b id="accounts-count" class="text-sm text-white">0 akun</b></div>
+</div>
+<form onsubmit="addAccount(event)" class="space-y-2 border-b border-gray-800 pb-3">
+<h4 class="text-[10px] font-bold text-white">Tambah akun baru</h4>
+<div class="grid grid-cols-2 gap-2"><input id="acc-name" required maxlength="50" placeholder="Nama: BRI / DANA / Kas" class="w-full bg-dark-base border border-gray-800 rounded-lg p-2 text-xs text-white"><select id="acc-type" class="w-full bg-dark-base border border-gray-800 rounded-lg p-2 text-xs text-white"><option>Bank</option><option>E-Wallet</option><option>Kas Tunai</option><option>Lainnya</option></select></div>
+<label class="block text-[9px] text-gray-400">Saldo awal (Rp)</label><input id="acc-opening" required value="0" inputmode="numeric" oninput="formatNominalInput(this)" class="w-full bg-dark-base border border-gray-800 rounded-lg p-2 text-xs text-white">
+<button class="w-full py-2 rounded-xl bg-gold-gradient text-dark-base font-bold text-xs">+ Tambah Akun</button>
+</form>
+<div class="space-y-1"><div class="flex items-center justify-between gap-2"><h4 class="text-[10px] font-bold text-white">Daftar saldo akun</h4><span class="text-[8px] text-gray-400">Edit atau hapus akun</span></div><div id="accounts-list" class="space-y-2"><p class="text-[10px] text-gray-500">Belum ada akun. Tambahkan akun pertama di atas.</p></div></div>
+</div>
+<div class="glass-panel p-3 rounded-xl space-y-2">
+<h3 class="font-bold text-white text-xs"><i class="fa-solid fa-clock-rotate-left text-gold-400 mr-1"></i> Riwayat Perubahan Saldo</h3>
+<div id="account-ledger-list" class="space-y-1"><p class="text-[10px] text-gray-500">Belum ada perubahan saldo.</p></div>
+</div>
+</section>
+
+<section id="view-transfer" class="tab-content hidden space-y-2.5">
+<div class="glass-panel p-2.5 rounded-xl border-gold-500/30">
+<div class="flex items-center justify-between mb-1.5"><h3 class="font-bold text-white text-xs flex items-center gap-1.5"><i class="fa-solid fa-building-columns text-gold-400"></i> Transfer untuk Pelanggan</h3><span class="text-[8px] text-emerald-300">Saldo & admin tercatat</span></div>
+<form id="form-transfer" onsubmit="saveTransferTransaction(event)" class="space-y-1.5">
+<div><label class="block text-[8px] text-gray-400">Akun sumber dana untuk transfer pelanggan</label><select id="tf-source-account" class="account-select w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"><option value="">Pilih akun sumber</option></select></div>
+<div class="grid grid-cols-2 gap-2">
+<div><label class="block text-[8px] text-gray-400">Bank / e-wallet tujuan</label><input type="text" id="tf-bank-name" required placeholder="BCA, BRI, DANA..." class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+<div><label class="block text-[8px] text-gray-400">Nomor rekening / tujuan</label><input type="text" id="tf-account-no" required placeholder="Nomor rekening/HP" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div><label class="block text-[8px] text-gray-400">Nominal transfer (Rp)</label><input type="text" id="tf-amount" required placeholder="0" inputmode="numeric" autocomplete="off" oninput="formatNominalInput(this)" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+<div><label class="block text-[8px] text-gray-400">Biaya admin/jasa (Rp)</label><input type="text" id="tf-admin-fee" value="0" required placeholder="0" inputmode="numeric" autocomplete="off" oninput="formatNominalInput(this)" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+<div class="col-span-2"><label class="block text-[8px] text-amber-300">Biaya admin BANK yang dipotong (Rp)</label><input type="text" id="tf-bank-fee" value="0" required placeholder="0" inputmode="numeric" autocomplete="off" oninput="formatNominalInput(this)" class="w-full bg-dark-base border border-amber-500/30 rounded-lg p-1 text-xs text-white"><p class="text-[8px] text-gray-500 mt-0.5">Terpisah dari jasa pelanggan; mengurangi saldo akun sumber.</p></div>
+</div>
+<div><label class="block text-[8px] text-gray-400">Akun tempat biaya jasa pelanggan diterima</label><select id="tf-fee-account" class="account-select w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"><option value="">Pilih akun penerima biaya jasa</option></select></div>
+<div><label class="block text-[8px] text-gray-400">Keterangan</label><input type="text" id="tf-note" placeholder="Nama pelanggan / catatan" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+<button type="submit" class="w-full py-1.5 rounded-xl bg-gold-gradient text-dark-base font-bold text-xs">Simpan Transfer Pelanggan & Biaya Jasa</button>
+</form>
+</div>
+</section>
+
+<section id="view-tarik" class="tab-content hidden space-y-2.5">
+<div class="glass-panel p-2.5 rounded-xl border-gold-500/30">
+<div class="flex items-center justify-between mb-1.5"><h3 class="font-bold text-white text-xs flex items-center gap-1.5"><i class="fa-solid fa-hand-holding-dollar text-gold-400"></i> Tarik Tunai Pelanggan</h3><span class="text-[8px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20 font-bold">Transaksi tunai</span></div>
+<form id="form-tarik" onsubmit="saveTarikTransaction(event)" class="space-y-1.5">
+<div class="grid grid-cols-2 gap-2">
+<div><label class="block text-[8px] text-gray-400">Nominal Ditarik (Rp)</label><input type="text" id="tarik-amount" required placeholder="0" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white" inputmode="numeric" autocomplete="off" oninput="formatNominalInput(this)"></div>
+<div><label class="block text-[8px] text-gray-400">Biaya Admin / Jasa (Rp)</label><input type="text" id="tarik-admin-fee" required placeholder="0" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white" inputmode="numeric" autocomplete="off" oninput="formatNominalInput(this)"></div>
+<div class="col-span-2"><label class="block text-[8px] text-amber-300">Biaya admin BANK (Rp)</label><input type="text" id="tarik-bank-fee" value="0" required placeholder="0" class="w-full bg-dark-base border border-amber-500/30 rounded-lg p-1 text-xs text-white" inputmode="numeric" autocomplete="off" oninput="formatNominalInput(this)"><p class="text-[8px] text-gray-500 mt-0.5">Biaya bank, bukan jasa pelanggan; mengurangi saldo akun digital.</p></div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div><label class="block text-[8px] text-gray-400">Akun digital yang menerima dana pelanggan</label><select id="tarik-in-account" class="account-select w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"><option value="">Pilih akun (opsional)</option></select></div>
+<div><label class="block text-[8px] text-gray-400">Akun kas yang membayar uang tunai ke pelanggan</label><select id="tarik-cash-account" class="account-select w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"><option value="">Pilih akun kas (opsional)</option></select></div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div><label class="block text-[8px] text-gray-400">Akun tempat biaya jasa diterima</label><select id="tarik-fee-account" class="account-select w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"><option value="">Pilih akun (opsional)</option></select></div>
+<div><label class="block text-[8px] text-gray-400">Sumber Transfer / QRIS / EDC</label><input type="text" id="tarik-source" required placeholder="QRIS, EDC, Transfer Bank" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+</div>
+<div><label class="block text-[8px] text-gray-400">Catatan Pelanggan</label><input type="text" id="tarik-note" placeholder="a.n Pelanggan" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1 text-xs text-white"></div>
+<button type="submit" class="w-full py-1.5 rounded-xl bg-gold-gradient text-dark-base font-bold text-xs">Simpan Tarik Tunai Pelanggan & Biaya Jasa</button>
+</form>
+</div>
+</section>
+
+<section id="view-settings" class="tab-content hidden space-y-2.5">
+<div class="glass-panel p-3 rounded-xl border-gold-500/30 space-y-3">
+<div class="flex items-center justify-between border-b border-gray-800 pb-2"><h3 class="font-bold text-white text-xs flex items-center gap-1.5"><i class="fa-solid fa-key text-gold-400"></i> Pengaturan Kata Sandi Admin</h3><span class="text-[8px] text-gold-400 bg-gold-500/10 px-1.5 py-0.5 rounded border border-gold-500/20 font-bold">Mode Admin</span></div>
+<form id="form-change-password" onsubmit="changeAdminPassword(event)" class="space-y-2">
+<div><label class="block text-[9px] text-gray-400 font-semibold mb-0.5">Kata Sandi Lama</label><input type="password" id="pass-current" required placeholder="Masukkan kata sandi lama" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1.5 text-xs text-white focus:outline-none focus:border-gold-500"></div>
+<div><label class="block text-[9px] text-gray-400 font-semibold mb-0.5">Kata Sandi Baru</label><input type="password" id="pass-new" required placeholder="Masukkan kata sandi baru" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1.5 text-xs text-white focus:outline-none focus:border-gold-500"></div>
+<div><label class="block text-[9px] text-gray-400 font-semibold mb-0.5">Konfirmasi Kata Sandi Baru</label><input type="password" id="pass-confirm" required placeholder="Ulangi kata sandi baru" class="w-full bg-dark-base border border-gray-800 rounded-lg p-1.5 text-xs text-white focus:outline-none focus:border-gold-500"></div>
+<button type="submit" class="w-full py-2 rounded-xl bg-gold-gradient text-dark-base font-extrabold text-xs shadow-md shadow-gold-500/20">Simpan Kata Sandi Baru</button>
+</form>
+<div class="border-t border-gray-800 pt-3 space-y-2">
+<h4 class="font-bold text-white text-xs flex items-center gap-1.5"><i class="fa-solid fa-database text-emerald-400"></i> Backup & Pemulihan Data Offline</h4>
+<p class="text-[9px] text-gray-400 leading-relaxed">Data tetap tersimpan di perangkat ini. Buat file backup secara berkala dan simpan di tempat lain agar dapat dipulihkan jika data browser terhapus atau perangkat bermasalah.</p>
+<button type="button" onclick="downloadDataBackup()" class="w-full py-2 rounded-xl bg-emerald-600/20 border border-emerald-500/40 text-emerald-300 font-bold text-[10px]"><i class="fa-solid fa-download mr-1"></i> BACKUP SEMUA DATA (JSON)</button>
+<label class="block text-[9px] text-gray-300 font-semibold">Pulihkan dari file backup</label>
+<input type="file" id="restore-backup-file" accept=".json,application/json" class="w-full text-[9px] text-gray-300 bg-dark-base border border-gray-800 rounded-lg p-2">
+<button type="button" onclick="restoreDataBackup()" class="w-full py-2 rounded-xl bg-blue-600/20 border border-blue-500/40 text-blue-300 font-bold text-[10px]"><i class="fa-solid fa-rotate-left mr-1"></i> PULIHKAN DATA DARI FILE</button>
+<p class="text-[8px] text-amber-300">Penting: file backup berisi data usaha. Simpan baik-baik. Pemulihan akan mengganti data yang ada di perangkat ini dengan isi backup.</p>
+</div>
+<div class="border-t border-gray-800 pt-2 flex items-center justify-between">
+<div><span class="text-[9px] font-bold text-gray-300 block">Reset Sandi Ke Default</span><span class="text-[8px] text-gray-500 block">Kembalikan kata sandi ke default aplikasi.</span></div>
+<button onclick="resetAdminPasswordDefault()" class="px-2.5 py-1 rounded-lg bg-ruby-luxury/20 border border-ruby-luxury/40 text-ruby-luxury font-bold text-[9px]">Reset Default</button>
+</div>
+</div>
+</section>
+</div>
+
+<nav class="fixed bottom-0 left-0 right-0 h-14 glass-panel border-t border-gold-500/20 z-40 px-1 flex items-center justify-around max-w-lg mx-auto">
+<button onclick="switchTab('pos')" id="nav-pos" class="nav-btn flex flex-col items-center justify-center w-10 py-1 rounded-xl text-gold-400"><i class="fa-solid fa-cash-register text-sm"></i><span class="text-[8px] font-bold mt-0.5">Kasir</span></button>
+<button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn admin-only hidden flex flex-col items-center justify-center w-10 py-1 rounded-xl text-gray-400"><i class="fa-solid fa-chart-pie text-sm"></i><span class="text-[8px] font-bold mt-0.5">Beranda</span></button>
+<button onclick="switchTab('cashflow')" id="nav-cashflow" class="nav-btn flex flex-col items-center justify-center w-10 py-1 rounded-xl text-gray-400"><i class="fa-solid fa-hand-holding-dollar text-sm"></i><span class="text-[8px] font-bold mt-0.5">Kas IN/OUT</span></button>
+<button onclick="switchTab('transfer')" id="nav-transfer" class="nav-btn flex flex-col items-center justify-center w-10 py-1 rounded-xl text-gray-400"><i class="fa-solid fa-building-columns text-sm"></i><span class="text-[8px] font-bold mt-0.5">Transfer</span></button>
+<button onclick="switchTab('tarik')" id="nav-tarik" class="nav-btn flex flex-col items-center justify-center w-10 py-1 rounded-xl text-gray-400"><i class="fa-solid fa-money-bill-transfer text-sm"></i><span class="text-[8px] font-bold mt-0.5">Tarik Tunai</span></button>
+<button onclick="switchTab('products')" id="nav-products" class="nav-btn admin-only hidden flex flex-col items-center justify-center w-10 py-1 rounded-xl text-gray-400"><i class="fa-solid fa-boxes-stacked text-sm"></i><span class="text-[8px] font-bold mt-0.5">Katalog</span></button>
+<button onclick="switchTab('reports')" id="nav-reports" class="nav-btn admin-only hidden flex flex-col items-center justify-center w-10 py-1 rounded-xl text-gray-400"><i class="fa-solid fa-file-invoice-dollar text-sm"></i><span class="text-[8px] font-bold mt-0.5">Jurnal</span></button>
+<button onclick="switchTab('accounts')" id="nav-accounts" class="nav-btn admin-only hidden flex flex-col items-center justify-center w-10 py-1 rounded-xl text-gray-400"><i class="fa-solid fa-wallet text-sm"></i><span class="text-[8px] font-bold mt-0.5">Saldo</span></button>
+<button onclick="switchTab('settings')" id="nav-settings" class="nav-btn admin-only hidden flex flex-col items-center justify-center w-10 py-1 rounded-xl text-gray-400"><i class="fa-solid fa-user-gear text-sm"></i><span class="text-[8px] font-bold mt-0.5">Sandi</span></button>
+</nav>
+
+<div id="login-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+<div class="glass-panel border-gold-500/40 rounded-2xl p-4 w-full max-w-xs shadow-2xl relative space-y-3 text-center">
+<button onclick="closeLoginModal()" class="absolute top-2 right-2 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-sm"></i></button>
+<div class="w-12 h-12 mx-auto rounded-full bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400 text-lg"><i class="fa-solid fa-shield-halved"></i></div>
+<div><h3 class="font-bold text-white text-sm">Masuk Mode Admin</h3><p class="text-[9px] text-gray-400 mt-0.5">Masukkan kata sandi admin untuk mengunci / membuka fitur penuh.</p></div>
+<form onsubmit="verifyAdminPassword(event)" class="space-y-2"><input type="password" id="admin-pass-input" placeholder="Kata Sandi Admin" required class="w-full bg-dark-base border border-gray-800 rounded-xl p-2 text-xs text-white text-center focus:outline-none focus:border-gold-500"><button type="submit" class="w-full py-2 rounded-xl bg-gold-gradient text-dark-base font-extrabold text-xs shadow-md">Verifikasi Sandi</button></form>
+</div>
+</div>
+
+<div id="cloud-login-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-[60] flex items-center justify-center p-4 hidden">
+  <div class="glass-panel border-gold-500/40 rounded-2xl p-5 w-full max-w-xs shadow-2xl space-y-3 text-center">
+    <div class="w-12 h-12 mx-auto rounded-full bg-blue-500/15 border border-blue-400/40 flex items-center justify-center text-blue-500 text-lg"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+    <div><h3 class="font-bold text-sm">Login Sinkronisasi Cloud</h3><p class="text-[10px] text-gray-500 mt-1">Masuk dengan email dan kata sandi yang sama di semua HP. Data akan tersimpan dan disinkronkan otomatis.</p></div>
+    <form onsubmit="connectFirebaseSync(event)" class="space-y-2">
+      <input type="email" id="cloud-login-email" required autocomplete="username" placeholder="Email akun cloud" class="w-full rounded-xl p-2.5 text-xs text-center">
+      <input type="password" id="cloud-login-password" required autocomplete="current-password" placeholder="Kata sandi akun cloud" class="w-full rounded-xl p-2.5 text-xs text-center">
+      <button type="submit" class="w-full py-2.5 rounded-xl bg-gold-gradient font-extrabold text-xs"><i class="fa-solid fa-right-to-bracket mr-1"></i> LOGIN & SINKRONKAN</button>
+    </form>
+    <button type="button" onclick="closeCloudLoginModal()" class="w-full py-2 rounded-xl border border-blue-300/50 text-xs font-bold">Lanjut Offline</button>
+    <p class="text-[9px] text-gray-500">Gunakan akun yang sama di setiap HP agar data dapat dilihat bersama. Perubahan akan tersimpan otomatis ke cloud.</p>
+  </div>
+</div>
+
+<div id="receipt-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3">
+<div class="bg-white text-gray-900 rounded-2xl p-4 w-full max-w-xs shadow-2xl relative max-h-[92vh] overflow-y-auto">
+<button onclick="closeReceiptModal()" class="absolute top-2 right-2 text-gray-400 hover:text-black"><i class="fa-solid fa-xmark text-base"></i></button>
+<div id="printable-receipt" class="space-y-2 text-[10px] font-mono bg-white p-2 border border-gray-200 rounded-lg">
+<div class="text-center border-b pb-2 border-dashed border-gray-300">
+<div class="flex items-center justify-center gap-1.5 mb-1"><svg class="w-5 h-5 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2.5" /><line x1="10" y1="5" x2="14" y2="5" /><circle cx="12" cy="18" r="1" /></svg><h2 class="font-extrabold text-sm uppercase">Al Amanah/Zavier Cell</h2></div>
+<p class="text-[8px] text-gray-500">Penyedia Pulsa & Layanan Keuangan</p>
+<p id="rec-date" class="text-[8px] text-gray-400 mt-0.5"></p>
+</div>
+<div id="rec-items" class="space-y-1 border-b pb-2 border-dashed border-gray-300"></div>
+<div class="space-y-0.5 text-right">
+<div class="flex justify-between font-bold text-xs"><span>TOTAL:</span><span id="rec-total"></span></div>
+<div class="flex justify-between text-gray-500 text-[9px]"><span>Bayar:</span><span id="rec-pay"></span></div>
+<div class="flex justify-between text-gray-500 text-[9px]"><span>Kembali:</span><span id="rec-change"></span></div>
+<div class="flex justify-between text-gray-500 text-[9px]"><span>Metode:</span><span id="rec-method"></span></div>
+</div>
+<div class="text-center pt-2 border-t border-dashed border-gray-300 text-[8px] text-gray-500"><p>Terima kasih telah bertransaksi di</p><p class="font-bold">Al Amanah/Zavier Cell</p></div>
+</div>
+<div id="image-receipt-preview-container" class="mt-2 hidden">
+<span class="text-[9px] font-bold text-gray-500 block mb-1">Preview Gambar Struk HD:</span>
+<img id="image-receipt-preview" class="w-full h-auto border border-amber-300 rounded-lg shadow-sm bg-white" alt="Struk Gambar HD">
+<span id="image-size-badge" class="text-[8px] font-mono text-emerald-600 block mt-1 text-right"></span>
+</div>
+<div class="mt-3 space-y-2 border-t pt-2 border-gray-200">
+<div class="grid grid-cols-2 gap-1.5">
+<button onclick="shareReceiptWhatsAppImage()" class="py-2 rounded-xl bg-green-600 hover:bg-green-700 text-white font-extrabold text-[10px] flex items-center justify-center gap-1 shadow-md"><i class="fa-brands fa-whatsapp text-sm"></i> Bagikan Gambar Struk ke WA</button>
+<button onclick="downloadReceiptImage()" class="py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-[10px] flex items-center justify-center gap-1 shadow-md"><i class="fa-solid fa-download"></i> Unduh Gambar</button>
+</div>
+</div>
+</div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+<!-- BAGIAN 2: SCRIPT UTAMA, TEMPEL TEPAT SETELAH BARIS INI --><script>
+const DEFAULT_ADMIN_PASS='Muhlisin26';
+const DEFAULT_PRODUCTS=[
+{id:'1',name:'Pulsa Reguler 10k',category:'Pulsa',type:'digital',price:12000,hpp:10200},
+{id:'2',name:'Pulsa Reguler 50k',category:'Pulsa',type:'digital',price:52000,hpp:50100},
+{id:'3',name:'Telkomsel 10GB Data',category:'Paket Data',type:'digital',price:35000,hpp:30000},
+{id:'4',name:'Voucher XL 15GB',category:'Paket Data',type:'digital',price:45000,hpp:39000},
+{id:'5',name:'Kabel Data Type-C',category:'Aksesoris',type:'digital',price:25000,hpp:12000},
+{id:'6',name:'Token PLN 50k',category:'Token PLN',type:'digital',price:52500,hpp:50150}
+];
+
+function loadJson(key,fallback){try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw):fallback}catch(err){console.warn('Gagal membaca localStorage:',key,err);return fallback}}
+
+const loadedProducts=loadJson('azc_products',DEFAULT_PRODUCTS);
+const loadedTransactions=loadJson('azc_transactions',[]);
+const loadedAccounts=loadJson('azc_accounts',[]);
+const loadedLedger=loadJson('azc_account_ledger',[]);
+
+let state={
+products:Array.isArray(loadedProducts)?loadedProducts:DEFAULT_PRODUCTS,
+transactions:Array.isArray(loadedTransactions)?loadedTransactions:[],
+accounts:Array.isArray(loadedAccounts)?loadedAccounts:[],
+accountLedger:Array.isArray(loadedLedger)?loadedLedger:[],
+adminPassword:localStorage.getItem('azc_admin_pass')||DEFAULT_ADMIN_PASS,
+isAdmin:false,
+cart:[],
+activeCategory:'All',
+currentTransaction:null
+};
+
+let chartInstance=null;
+let generatedReceiptBlob=null;
+let generatedReceiptDataUrl=null;
+let lastSaveErrorMessage='';
+
+const firebaseConfig={
+apiKey:"AIzaSyDLG5DsZ9rdozKbLUDdXgZSqzX6q-gXR7M",
+authDomain:"al-amanah-zavier-cell.firebaseapp.com",
+databaseURL:"https://al-amanah-zavier-cell-default-rtdb.asia-southeast1.firebasedatabase.app",
+projectId:"al-amanah-zavier-cell",
+storageBucket:"al-amanah-zavier-cell.firebasestorage.app",
+messagingSenderId:"563000695994",
+appId:"1:563000695994:web:9052c8a5094a5c20cbf683"
+};
+
+let cloudDb=null,cloudAuth=null,cloudUser=null,cloudRef=null,cloudListener=null;
+let cloudSyncReady=false,cloudWriteTimer=null,cloudApplying=false;
+
+const cloudDeviceId=(()=>{try{let id=localStorage.getItem('azc_cloud_device_id');if(!id){id='dev_'+Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem('azc_cloud_device_id',id)}return id}catch(_){return 'dev_'+Math.random().toString(36).slice(2)}})();
+
+try{
+if(typeof firebase!=='undefined'){
+if(!firebase.apps.length)firebase.initializeApp(firebaseConfig);
+cloudAuth=firebase.auth();
+cloudDb=firebase.database();
+}
+}catch(e){console.error('Firebase init:',e)}
+
+function isVisible(id){const el=document.getElementById(id);return el&&!el.classList.contains('hidden')}
+function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
+function formatRp(number){return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(number)||0)}
+function parseNominal(value){const digits=String(value??'').replace(/[^0-9]/g,'');return digits?Number(digits):0}
+function formatNominalInput(input){const digits=String(input.value??'').replace(/[^0-9]/g,'');input.value=digits?Number(digits).toLocaleString('id-ID'):''}
+function uid(prefix){return`${prefix}-${Date.now()}-${Math.random().toString(36).slice(2,7)}`}
+function detachCloudListener(){if(cloudRef&&cloudListener){cloudRef.off('value',cloudListener);cloudListener=null}}
+
+function openCloudLoginModal(){
+if(cloudSyncReady&&cloudUser){
+alert('Akun cloud sudah terhubung. Sinkronisasi berjalan otomatis.');
+return;
+}
+document.getElementById('cloud-login-modal')?.classList.remove('hidden');
+}
+function closeCloudLoginModal(){
+document.getElementById('cloud-login-modal')?.classList.add('hidden');
+}
+async function connectFirebaseSync(event){
+if(event)event.preventDefault();
+if(!cloudDb||!cloudAuth)return alert('Firebase belum dapat dimuat. Periksa koneksi internet lalu buka aplikasi kembali.');
+if(cloudSyncReady&&cloudUser){closeCloudLoginModal();return alert('Akun cloud sudah terhubung. Sinkronisasi berjalan otomatis.');}
+try{
+let user=cloudAuth.currentUser;
+if(!user){
+const email=(document.getElementById('cloud-login-email')?.value||'').trim();
+const password=document.getElementById('cloud-login-password')?.value||'';
+if(!email||!password)return alert('Masukkan email dan kata sandi akun cloud.');
+// Cegah listener onAuthStateChanged menjalankan proses resume bersamaan dengan login manual.
+cloudResumeStarted=true;
+try{
+const credential=await cloudAuth.signInWithEmailAndPassword(email,password);
+user=credential.user;
+}catch(err){
+const recoverableCodes=['auth/user-not-found','auth/invalid-credential','auth/invalid-login-credentials','auth/wrong-password'];
+if(recoverableCodes.includes(err.code)){
+if(confirm('Akun belum bisa masuk. Buat akun Firebase baru dengan email ini? Pastikan metode Email/Password sudah diaktifkan di Firebase Authentication.')){
+const credential=await cloudAuth.createUserWithEmailAndPassword(email,password);
+user=credential.user;
+}else{throw err}
+}else{throw err}
+}
+}
+cloudUser=user;
+cloudRef=cloudDb.ref(`users/${cloudUser.uid}/azc_shared_data`);
+detachCloudListener();
+const snap=await cloudRef.once('value');
+if(snap.exists()){
+// Cloud menjadi sumber data bersama: perangkat baru langsung memuat data cloud.
+// Ini membuat semua HP yang memakai akun sama melihat data yang sama.
+applyCloudData(snap.val());
+}else{
+// Jika cloud masih kosong, data perangkat pertama menjadi data awal bersama.
+await writeCloudSnapshot();
+}
+cloudSyncReady=true;
+closeCloudLoginModal();
+cloudListener=snapshot=>{
+if(!cloudSyncReady||cloudApplying||!snapshot.exists())return;
+const data=snapshot.val();
+if(data&&data._updatedBy!==cloudDeviceId)applyCloudData(data);
+};
+cloudRef.on('value',cloudListener);
+alert('Akun Firebase terhubung. Sinkronisasi aktif pada perangkat ini. Gunakan akun yang sama di HP lain.');
+}catch(err){
+cloudResumeStarted=false;
+console.error('Firebase sync:',err);
+alert('Belum berhasil terhubung: '+(err.message||err.code||'kesalahan tidak diketahui')+'\n\nJangan ubah aturan database menjadi akses publik. Periksa Authentication dan Rules Firebase.');
+}
+}
+
+
+// Sambungkan kembali otomatis saat aplikasi dibuka jika perangkat ini
+// sebelumnya sudah masuk ke akun Firebase yang sama.
+let cloudResumeStarted = false;
+async function resumeFirebaseSyncAutomatically(user){
+  if(!user || cloudResumeStarted || cloudSyncReady || !cloudDb) return;
+  cloudResumeStarted = true;
+  try{
+    cloudUser = user;
+    cloudRef = cloudDb.ref(`users/${cloudUser.uid}/azc_shared_data`);
+    detachCloudListener();
+
+    const snap = await cloudRef.once('value');
+    if(snap.exists()){
+      // Gunakan data cloud sebagai data bersama pada perangkat yang tersambung.
+      applyCloudData(snap.val());
+    }else{
+      // Database masih kosong: jadikan data perangkat pertama sebagai data awal.
+      await writeCloudSnapshot();
+    }
+
+    cloudSyncReady = true;
+    cloudListener = snapshot => {
+      if(!cloudSyncReady || cloudApplying || !snapshot.exists()) return;
+      const data = snapshot.val();
+      if(data && data._updatedBy !== cloudDeviceId) applyCloudData(data);
+    };
+    cloudRef.on('value', cloudListener);
+    console.log('Sinkronisasi otomatis aktif.');
+  }catch(err){
+    console.error('Sinkronisasi otomatis belum berhasil:', err);
+    cloudSyncReady = false;
+    cloudResumeStarted = false;
+    // Tidak menampilkan pop-up berulang saat aplikasi dibuka.
+  }
+}
+
+function applyCloudData(data){
+if(!data)return;
+cloudApplying=true;
+if(Array.isArray(data.products))state.products=data.products;
+if(Array.isArray(data.transactions))state.transactions=data.transactions;
+if(Array.isArray(data.accounts))state.accounts=data.accounts;
+if(Array.isArray(data.accountLedger))state.accountLedger=data.accountLedger;
+const saved=saveData();
+cloudApplying=false;
+if(saved)refreshAllViews();else alert('Data cloud sudah dimuat ke memori, tetapi gagal disimpan ke localStorage.');
+}
+
+async function writeCloudSnapshot(){
+if(!cloudDb||!cloudUser)return;
+const snapshot={
+products:state.products||[],
+transactions:(state.transactions||[]).slice(0,500),
+accounts:state.accounts||[],
+accountLedger:(state.accountLedger||[]).slice(0,500),
+_updatedBy:cloudDeviceId,
+_updatedAt:Date.now()
+};
+await cloudDb.ref(`users/${cloudUser.uid}/azc_shared_data`).set(snapshot);
+}
+
+function queueCloudSave(){
+if(!cloudSyncReady||cloudApplying||!cloudUser)return;
+clearTimeout(cloudWriteTimer);
+cloudWriteTimer=setTimeout(()=>writeCloudSnapshot().catch(err=>{
+console.error('Cloud save failed:',err);
+alert('Data tersimpan di HP, tetapi gagal dikirim ke cloud. Periksa koneksi dan Rules Firebase.');
+}),700);
+}
+
+function startLiveClock(){
+function updateClock(){
+const now=new Date();
+const clockEl=document.getElementById('banner-clock');
+const dateEl=document.querySelector('#banner-date span');
+if(clockEl)clockEl.innerText=now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+if(dateEl)dateEl.textContent=now.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'});
+}
+updateClock();
+setInterval(updateClock,1000);
+}
+
+function saveData(){
+try{
+const maxRecords=500;
+state.transactions=Array.isArray(state.transactions)?state.transactions:[];
+state.accountLedger=Array.isArray(state.accountLedger)?state.accountLedger:[];
+state.accounts=Array.isArray(state.accounts)?state.accounts:[];
+state.products=Array.isArray(state.products)?state.products:DEFAULT_PRODUCTS;
+const txToSave=state.transactions.length>maxRecords?state.transactions.slice(0,maxRecords):state.transactions;
+const ledgerToSave=state.accountLedger.length>maxRecords?state.accountLedger.slice(0,maxRecords):state.accountLedger;
+localStorage.setItem('azc_products',JSON.stringify(state.products));
+localStorage.setItem('azc_transactions',JSON.stringify(txToSave));
+localStorage.setItem('azc_accounts',JSON.stringify(state.accounts));
+localStorage.setItem('azc_account_ledger',JSON.stringify(ledgerToSave));
+localStorage.setItem('azc_admin_pass',state.adminPassword);
+lastSaveErrorMessage='';
+}catch(err){
+console.error('Gagal menyimpan data:',err);
+if(err.name==='QuotaExceededError'||err.code===22||(err.message&&err.message.toLowerCase().includes('quota'))){
+lastSaveErrorMessage='PENYIMPANAN BROWSER PENUH. Buat backup JSON, lalu hapus/reset data lama. Transaksi tidak berhasil disimpan permanen.';
+}else{
+lastSaveErrorMessage='Penyimpanan gagal: '+(err.message||'kesalahan tidak diketahui');
+}
+return false;
+}
+updateDashboard();
+queueCloudSave();
+if(isVisible('view-accounts'))renderAccounts();
+const totalAccountBalance=(state.accounts||[]).reduce((sum,a)=>sum+(Number(a.balance)||0),0);
+const topBalance=document.getElementById('top-balance');
+if(topBalance&&(state.accounts||[]).length)topBalance.textContent=formatRp(totalAccountBalance);
+return true;
+}
+
+function saveDataChecked(message){
+const ok=saveData();
+if(!ok)alert(message||lastSaveErrorMessage||'Gagal menyimpan data.');
+return ok;
+}
+
+function downloadDataBackup(){
+try{
+const backup={app:'Al Amanah/Zavier Cell',format:'azc-offline-backup',version:1,exportedAt:new Date().toISOString(),products:state.products,transactions:state.transactions,accounts:state.accounts||[],accountLedger:state.accountLedger||[],adminPassword:state.adminPassword};
+const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});
+const url=URL.createObjectURL(blob);
+const a=document.createElement('a');
+a.href=url;
+a.download=`Backup_Kasir_${new Date().toISOString().slice(0,10)}.json`;
+document.body.appendChild(a);
+a.click();
+a.remove();
+setTimeout(()=>URL.revokeObjectURL(url),1500);
+alert('Backup dibuat. Pastikan file JSON tersimpan di folder Download atau tempat aman lain.');
+}catch(err){alert('Backup gagal dibuat: '+err.message)}
+}
+
+function restoreDataBackup(){
+const input=document.getElementById('restore-backup-file');
+const file=input&&input.files&&input.files[0];
+if(!file){alert('Pilih file backup JSON terlebih dahulu.');return}
+if(!confirm('Pulihkan data dari file ini? Data saat ini akan diganti. Sebaiknya buat backup data sekarang terlebih dahulu.'))return;
+const reader=new FileReader();
+reader.onload=function(){
+try{
+const data=JSON.parse(reader.result);
+if(!data||!Array.isArray(data.products)||!Array.isArray(data.transactions))throw new Error('Format file backup tidak cocok.');
+localStorage.setItem('azc_products',JSON.stringify(data.products));
+localStorage.setItem('azc_transactions',JSON.stringify(data.transactions));
+localStorage.setItem('azc_accounts',JSON.stringify(Array.isArray(data.accounts)?data.accounts:[]));
+localStorage.setItem('azc_account_ledger',JSON.stringify(Array.isArray(data.accountLedger)?data.accountLedger:[]));
+localStorage.setItem('azc_admin_pass',data.adminPassword||DEFAULT_ADMIN_PASS);
+alert('Data berhasil dipulihkan. Aplikasi akan dimuat ulang.');
+location.reload();
+}catch(err){alert('File backup tidak dapat dipulihkan: '+err.message)}
+};
+reader.onerror=()=>alert('File backup gagal dibaca.');
+reader.readAsText(file);
+}
+
+function toggleAdminRole(){
+if(state.isAdmin){state.isAdmin=false;applyRoleUI();switchTab('pos');alert('Keluar dari Mode Admin. Sekarang di Mode Kasir.');}
+else{const input=document.getElementById('admin-pass-input');if(input)input.value='';document.getElementById('login-modal')?.classList.remove('hidden')}
+}
+
+function closeLoginModal(){document.getElementById('login-modal')?.classList.add('hidden')}
+
+function verifyAdminPassword(e){
+e.preventDefault();
+const input=document.getElementById('admin-pass-input');
+if(!input)return;
+if(input.value===state.adminPassword){state.isAdmin=true;applyRoleUI();closeLoginModal();switchTab('dashboard');alert('Akses Admin Diterima! Seluruh Fitur Terbuka.');}
+else{alert('Kata Sandi Admin Salah!')}
+}
+
+function applyRoleUI(){
+const icon=document.getElementById('role-status-icon');
+const tag=document.getElementById('role-view-tag');
+const resetBtn=document.getElementById('btn-reset-data');
+const adminNavs=document.querySelectorAll('.admin-only');
+if(state.isAdmin){
+if(icon)icon.className='fa-solid fa-lock-open text-[15px] lock-admin role-lock-icon';
+if(tag){tag.className='role-pill role-pill-admin shrink-0';tag.innerText='Mode Admin';}
+resetBtn?.classList.remove('hidden');
+adminNavs.forEach(nav=>nav.classList.remove('hidden'));
+}else{
+if(icon)icon.className='fa-solid fa-lock text-[15px] lock-kasir role-lock-icon';
+if(tag){tag.className='role-pill role-pill-kasir shrink-0';tag.innerText='Mode Kasir';}
+resetBtn?.classList.add('hidden');
+adminNavs.forEach(nav=>nav.classList.add('hidden'));
+}
+}
+
+function changeAdminPassword(e){
+e.preventDefault();
+const current=document.getElementById('pass-current')?.value||'';
+const novo=document.getElementById('pass-new')?.value||'';
+const conf=document.getElementById('pass-confirm')?.value||'';
+if(current!==state.adminPassword)return alert('Kata sandi lama tidak sesuai!');
+if(novo!==conf)return alert('Konfirmasi kata sandi baru tidak cocok!');
+if(novo.length<4)return alert('Kata sandi baru minimal 4 karakter!');
+state.adminPassword=novo;
+if(!saveDataChecked('Gagal menyimpan kata sandi baru.'))return;
+document.getElementById('form-change-password')?.reset();
+alert('Kata sandi admin berhasil diubah!');
+}
+
+function resetAdminPasswordDefault(){
+if(!confirm('Reset kata sandi admin kembali ke default?'))return;
+state.adminPassword=DEFAULT_ADMIN_PASS;
+if(!saveDataChecked('Gagal mereset kata sandi.'))return;
+alert('Kata sandi admin telah dikembalikan ke default.');
+}
+
+function switchTab(tabId){
+if(!state.isAdmin&&!['pos','cashflow','transfer','tarik'].includes(tabId)){alert('Fitur ini terkunci. Masuk Mode Admin terlebih dahulu.');return}
+document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden'));
+document.querySelectorAll('.nav-btn').forEach(btn=>{btn.classList.remove('text-gold-400');btn.classList.add('text-gray-400')});
+const view=document.getElementById(`view-${tabId}`);
+if(!view)return;
+view.classList.remove('hidden');
+const activeNav=document.getElementById(`nav-${tabId}`);
+if(activeNav){activeNav.classList.add('text-gold-400');activeNav.classList.remove('text-gray-400')}
+const titles={dashboard:'Dashboard Overview',pos:'Kasir POS Toko',cashflow:'Kas IN / OUT Operasional',transfer:'Transfer untuk Pelanggan',tarik:'Tarik Tunai untuk Pelanggan',products:'Katalog Produk',reports:'Jurnal & Laporan',settings:'Pengaturan Sandi Admin',accounts:'Saldo Bank & E-Wallet'};
+const pageTitle=document.getElementById('page-title');
+if(pageTitle)pageTitle.innerHTML=`<i class="fa-solid fa-layer-group" style="color:#2476bd"></i> ${escapeHtml(titles[tabId]||'Halaman')}`;
+if(tabId==='pos')renderPOS();
+if(tabId==='products')renderProductsTable();
+if(tabId==='reports')renderReports();
+if(tabId==='dashboard')updateDashboard();
+if(tabId==='accounts')renderAccounts();
+if(['accounts','cashflow','pos','transfer','tarik'].includes(tabId))refreshAccountSelectors();
+}
+</script><script>
+function updateDashboard(){
+let totalModal=0,totalMasuk=0,totalKeluar=0,totalHppPOS=0,totalOmsetPOS=0,totalAdminTf=0,totalAdminTarik=0,totalOtherIn=0,totalOtherOut=0,totalTfOutNominal=0,totalTarikOutCash=0,totalBankFees=0;
+(state.transactions||[]).forEach(t=>{
+const amount=Number(t.amount)||0;
+const adminFee=Number(t.adminFee)||0;
+const bankFee=Number(t.bankFee)||0;
+const hppTotal=Number(t.hppTotal)||0;
+if(t.type==='MODAL_ADD')totalModal+=amount;
+if(t.type==='MODAL_WITHDRAW')totalModal-=amount;
+if(t.type==='POS'){totalMasuk+=amount;totalOmsetPOS+=amount;totalHppPOS+=hppTotal}
+if(t.type==='BANK_TRANSFER'){const totalUangDiterimaPelanggan=amount+adminFee;totalMasuk+=totalUangDiterimaPelanggan;totalTfOutNominal+=amount;totalAdminTf+=adminFee;totalBankFees+=bankFee}
+if(t.type==='BANK_TARIK'){const totalDigitalDiterima=amount+adminFee;totalMasuk+=totalDigitalDiterima;totalTarikOutCash+=amount;totalAdminTarik+=adminFee;totalBankFees+=bankFee}
+if(t.type==='IN'){totalMasuk+=amount;totalOtherIn+=amount}
+if(t.type==='OUT'){totalOtherOut+=amount}
+});
+totalKeluar=totalOtherOut+totalBankFees;
+const totalActualOutflow=totalTfOutNominal+totalTarikOutCash+totalOtherOut+totalHppPOS+totalBankFees;
+const currentBalance=totalModal+totalMasuk-totalActualOutflow;
+const netProfit=(totalOmsetPOS-totalHppPOS)+totalAdminTf+totalAdminTarik+totalOtherIn-totalOtherOut-totalBankFees;
+const accountTotalForHeader=(state.accounts||[]).reduce((sum,a)=>sum+(Number(a.balance)||0),0);
+const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.innerText=value};
+setText('top-balance',formatRp((state.accounts||[]).length?accountTotalForHeader:currentBalance));
+setText('dash-laba-kotor',formatRp(totalOmsetPOS-totalHppPOS));
+setText('dash-laba',formatRp(netProfit));
+setText('dash-masuk',formatRp(totalMasuk));
+setText('dash-keluar',formatRp(totalKeluar));
+setText('dash-admin-tf',formatRp(totalAdminTf));
+setText('dash-admin-tarik',formatRp(totalAdminTarik));
+renderChart(totalMasuk,totalKeluar);
+}
+
+function renderChart(masuk,keluar){
+const canvasEl=document.getElementById('cashflowChart');
+if(!canvasEl||typeof Chart==='undefined')return;
+const ctx=canvasEl.getContext('2d');
+if(!ctx)return;
+if(chartInstance)chartInstance.destroy();
+chartInstance=new Chart(ctx,{type:'bar',data:{labels:['Kas Masuk Total','Kas Keluar Total'],datasets:[{data:[masuk,keluar],backgroundColor:['rgba(16, 185, 129, 0.55)','rgba(239, 68, 68, 0.55)'],borderColor:['#10b981','#ef4444'],borderWidth:1.5,borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{color:'#475569',font:{size:8}},grid:{color:'rgba(148,163,184,.25)'}},x:{ticks:{color:'#475569',font:{size:8}},grid:{display:false}}}}});
+}
+
+function getPerPack(product){return Math.max(1,Number(product?.perPack)||1)}
+function getTotalStock(product){if(!product||product.type!=='physical')return 0;const perPack=getPerPack(product);return(Number(product.stockPacks)||0)*perPack+(Number(product.stockLoose)||0)}
+function addPhysicalStock(product,units){if(!product||product.type!=='physical')return;const perPack=getPerPack(product);let total=getTotalStock(product)+Number(units||0);if(total<0)total=0;product.stockPacks=Math.floor(total/perPack);product.stockLoose=total%perPack}
+function formatPhysicalStock(product){const perPack=getPerPack(product);const total=getTotalStock(product);const packs=Math.floor(total/perPack);const loose=total%perPack;return`${packs} ${escapeHtml(product.packName||'pack')} + ${loose} ${escapeHtml(product.unit||'pcs')}`}
+function getCartReservedUnits(productId,excludeLineKey=''){return(state.cart||[]).filter(c=>String(c.id)===String(productId)&&c.lineKey!==excludeLineKey).reduce((sum,c)=>sum+(Number(c.qty)||0)*(Number(c.factor)||1),0)}
+
+function renderPOS(){
+const categories=['All',...new Set((state.products||[]).map(p=>p.category||'Lainnya'))];
+const categoryBox=document.getElementById('pos-categories');
+if(categoryBox){categoryBox.innerHTML=categories.map(cat=>`<button data-cat="${escapeHtml(cat)}" onclick="setCategory(this.dataset.cat)" class="px-2 py-0.5 rounded-md text-[9px] font-bold whitespace-nowrap ${state.activeCategory===cat?'bg-gold-gradient text-dark-base':'bg-dark-base text-gray-400'}">${escapeHtml(cat)}</button>`).join('')}
+renderPOSProducts();
+renderCart();
+}
+
+function setCategory(cat){state.activeCategory=cat;renderPOS()}
+
+function renderPOSProducts(){
+const searchEl=document.getElementById('pos-search');
+const search=String(searchEl?.value||'').toLowerCase();
+const grid=document.getElementById('pos-products-grid');
+if(!grid)return;
+const filtered=(state.products||[]).filter(p=>(state.activeCategory==='All'||(p.category||'Lainnya')===state.activeCategory)&&String(p.name||'').toLowerCase().includes(search));
+if(!filtered.length){grid.innerHTML='<p class="col-span-2 text-center text-[10px] text-gray-500 py-4">Produk tidak ditemukan.</p>';return}
+grid.innerHTML=filtered.map(p=>`<div data-id="${escapeHtml(p.id)}" onclick="addToCart(this.dataset.id)" class="glass-panel p-2 rounded-xl gold-border-glow cursor-pointer flex flex-col justify-between"><div><h4 class="font-bold text-white text-[10px] truncate">${escapeHtml(p.name)}</h4><span class="text-[8px] text-gray-500 block">${escapeHtml(p.category||'Lainnya')}</span></div><div class="mt-1.5 flex justify-between items-center"><div><span class="font-extrabold text-gold-400 text-[10px] block">${formatRp(p.price)}</span>${p.type==='physical'?`<span class="text-[8px] text-emerald-300">Stok: ${formatPhysicalStock(p)}</span>`:''}</div><span class="w-3.5 h-3.5 rounded bg-gold-500/20 text-gold-400 flex items-center justify-center text-[8px]"><i class="fa-solid fa-plus"></i></span></div></div>`).join('');
+}
+
+function addToCart(productId){
+const prod=(state.products||[]).find(p=>String(p.id)===String(productId));
+if(!prod)return;
+let factor=1,saleMode='satuan',saleLabel=prod.unit||'item',price=Number(prod.price)||0,hpp=Number(prod.hpp)||0;
+if(prod.type==='physical'){
+const perPack=getPerPack(prod);
+const totalStock=getTotalStock(prod);
+const choice=perPack>1?prompt(`Pilih penjualan untuk ${prod.name}:
+1 = ${prod.unit||'satuan'} (ecer)
+2 = ${prod.packName||'pack'} (${perPack} ${prod.unit||'satuan'})
+
+Stok tersedia: ${Math.floor(totalStock/perPack)} ${prod.packName||'pack'} + ${totalStock%perPack} ${prod.unit||'satuan'}`,'1'):'1';
+if(choice===null)return;
+const selected=String(choice).trim();
+if(selected==='2'&&perPack>1){factor=perPack;saleMode='pack';saleLabel=prod.packName||'pack';price=Number(prod.packPrice)>0?Number(prod.packPrice):price*perPack;hpp=Number(prod.packHpp)>0?Number(prod.packHpp):hpp*perPack}else if(selected!=='1'){alert('Pilihan tidak valid.');return}
+const reserved=getCartReservedUnits(prod.id);
+if(reserved+factor>totalStock){alert('Stok barang tidak mencukupi!');return}
+}
+const lineKey=`${prod.id}_${saleMode}`;
+const exist=state.cart.find(c=>c.lineKey===lineKey);
+if(exist)exist.qty+=1;else state.cart.push({...prod,lineKey,qty:1,factor,saleMode,saleLabel,price,hpp});
+renderCart();
+}
+
+function updateCartQty(lineKey,delta){
+const item=state.cart.find(c=>c.lineKey===lineKey);
+if(!item)return;
+const nextQty=(Number(item.qty)||0)+Number(delta);
+if(nextQty>0&&item.type==='physical'){
+const prod=(state.products||[]).find(p=>String(p.id)===String(item.id));
+const totalStock=prod?getTotalStock(prod):0;
+const reservedOthers=getCartReservedUnits(item.id,lineKey);
+if(reservedOthers+nextQty*(Number(item.factor)||1)>totalStock){alert('Stok barang tidak mencukupi!');return}
+}
+item.qty=nextQty;
+if(item.qty<=0)state.cart=state.cart.filter(c=>c.lineKey!==lineKey);
+renderCart();
+}
+
+function clearCart(){state.cart=[];renderCart()}
+
+function renderCart(){
+const container=document.getElementById('cart-items');
+if(!container)return;
+if(!state.cart.length){container.innerHTML='<p class="text-[9px] text-gray-500 text-center py-2">Keranjang belanja kosong</p>'}
+else{container.innerHTML=state.cart.map(c=>`<div class="p-1 rounded-lg bg-dark-base border border-gray-800 flex items-center justify-between text-[10px]"><div class="truncate pr-1"><p class="font-semibold text-white truncate">${escapeHtml(c.name)} (${escapeHtml(c.saleLabel||c.unit||'item')})</p><p class="text-[8px] text-gold-400">${formatRp(c.price)} × ${Number(c.qty)||0}</p></div><div class="flex items-center gap-1"><button data-line="${escapeHtml(c.lineKey)}" onclick="updateCartQty(this.dataset.line, -1)" class="w-3.5 h-3.5 rounded bg-gray-800 text-white flex items-center justify-center text-[9px]">-</button><span class="font-bold text-white text-[9px] px-1">${Number(c.qty)||0}</span><button data-line="${escapeHtml(c.lineKey)}" onclick="updateCartQty(this.dataset.line, 1)" class="w-3.5 h-3.5 rounded bg-gray-800 text-white flex items-center justify-center text-[9px]">+</button></div></div>`).join('')}
+const subtotal=state.cart.reduce((sum,item)=>sum+((Number(item.price)||0)*(Number(item.qty)||0)),0);
+const totalEl=document.getElementById('cart-total');
+if(totalEl)totalEl.innerText=formatRp(subtotal);
+calculateChange();
+}
+
+function calculateChange(){
+const subtotal=state.cart.reduce((sum,item)=>sum+((Number(item.price)||0)*(Number(item.qty)||0)),0);
+const paid=parseNominal(document.getElementById('cart-pay-amount')?.value);
+const change=paid-subtotal;
+const changeEl=document.getElementById('cart-change');
+if(changeEl)changeEl.innerText=change>=0?formatRp(change):'Rp 0';
+}
+
+function processCheckout(){
+try{
+if(!Array.isArray(state.cart)||state.cart.length===0){alert('Keranjang belanja kosong! Pilih barang terlebih dahulu.');return}
+const total=state.cart.reduce((sum,item)=>sum+((Number(item.price)||0)*(Number(item.qty)||0)),0);
+const totalHpp=state.cart.reduce((sum,item)=>sum+((Number(item.hpp)||0)*(Number(item.qty)||0)),0);
+const methodEl=document.getElementById('pos-payment-method');
+const paidEl=document.getElementById('cart-pay-amount');
+const accountEl=document.getElementById('pos-account');
+if(!methodEl||!paidEl||!accountEl){alert('Form kasir belum siap. Muat ulang aplikasi lalu coba lagi.');return}
+const method=methodEl.value||'Tunai';
+const enteredPaid=parseNominal(paidEl.value);
+const paid=enteredPaid>0?enteredPaid:total;
+const paymentAccount=accountEl.value;
+if(total<=0){alert('Total transaksi tidak valid. Periksa harga dan jumlah barang.');return}
+if(method==='Tunai'&&paid<total){alert('Uang pembayaran tunai kurang!');return}
+const soldByProduct={};
+for(const item of state.cart){
+if(item.type!=='physical')continue;
+const soldUnits=(Number(item.qty)||0)*(Number(item.factor)||1);
+soldByProduct[item.id]=(soldByProduct[item.id]||0)+soldUnits;
+}
+for(const[productId,sold]of Object.entries(soldByProduct)){
+const prod=(state.products||[]).find(p=>String(p.id)===String(productId));
+if(!prod){alert('Barang tidak ditemukan di data produk. Muat ulang daftar barang lalu coba lagi.');return}
+const currentTotal=getTotalStock(prod);
+if(sold>currentTotal){alert(`Stok ${prod.name} tidak cukup. Transaksi dibatalkan.`);return}
+}
+const transaction={id:uid('AZC-POS'),date:new Date().toISOString(),type:'POS',category:'Penjualan Kasir',amount:total,hppTotal:totalHpp,items:state.cart.map(item=>({...item})),method,paid,change:paid-total,accountId:paymentAccount||''};
+const oldProducts=JSON.stringify(state.products);
+const oldTransactions=JSON.stringify(state.transactions);
+const oldAccounts=JSON.stringify(state.accounts||[]);
+const oldLedger=JSON.stringify(state.accountLedger||[]);
+try{
+for(const[productId,sold]of Object.entries(soldByProduct)){
+const prod=state.products.find(p=>String(p.id)===String(productId));
+if(prod)addPhysicalStock(prod,-sold);
+}
+if(paymentAccount)addLedger(paymentAccount,total,'Penerimaan penjualan POS',`Pembayaran ${method}`,transaction.id);
+state.transactions=Array.isArray(state.transactions)?state.transactions:[];
+state.transactions.unshift(transaction);
+const saved=saveData();
+if(!saved)throw new Error(lastSaveErrorMessage||'Gagal menyimpan transaksi.');
+state.currentTransaction=transaction;
+}catch(saveErr){
+try{state.products=JSON.parse(oldProducts);state.transactions=JSON.parse(oldTransactions);state.accounts=JSON.parse(oldAccounts);state.accountLedger=JSON.parse(oldLedger)}catch(_){}
+state.currentTransaction=null;
+console.error('Checkout gagal, data di-rollback:',saveErr);
+alert('Transaksi dibatalkan karena gagal menyimpan. Keranjang tetap tersedia. Silakan cek penyimpanan browser atau buat Backup.');
+return;
+}
+if(document.getElementById('products-table-body'))renderProductsTable();
+if(document.getElementById('pos-products-grid'))renderPOSProducts();
+state.cart=[];
+if(paidEl)paidEl.value='';
+renderCart();
+alert('✅ Transaksi berhasil disimpan!');
+}catch(err){
+console.error('Kesalahan processCheckout:',err);
+alert('⚠️ Terjadi kesalahan: '+(err.message||err)+'\n\nKeranjang tidak dikosongkan. Silakan coba lagi.');
+}
+}
+
+function openReceiptModal(trx){
+if(!trx)return;
+state.currentTransaction=trx;
+const dateEl=document.getElementById('rec-date');
+const itemsEl=document.getElementById('rec-items');
+const totalEl=document.getElementById('rec-total');
+const payEl=document.getElementById('rec-pay');
+const changeEl=document.getElementById('rec-change');
+const methodEl=document.getElementById('rec-method');
+if(dateEl)dateEl.innerText=new Date(trx.date).toLocaleString('id-ID');
+if(itemsEl)itemsEl.innerHTML=(trx.items||[]).map(i=>`<div class="flex justify-between font-semibold text-black py-0.5"><span>${escapeHtml(i.name)} x${Number(i.qty)||0}</span><span class="font-bold">${formatRp((Number(i.price)||0)*(Number(i.qty)||0))}</span></div>`).join('');
+if(totalEl)totalEl.innerText=formatRp(trx.amount);
+if(payEl)payEl.innerText=formatRp(trx.paid);
+if(changeEl)changeEl.innerText=formatRp(trx.change);
+if(methodEl)methodEl.innerText=escapeHtml(trx.method||'-');
+document.getElementById('receipt-modal')?.classList.remove('hidden');
+}
+
+function closeReceiptModal(){document.getElementById('receipt-modal')?.classList.add('hidden')}
+
+async function renderReceiptToImage(){
+const receiptElement=document.getElementById('printable-receipt');
+const imgPreview=document.getElementById('image-receipt-preview');
+const imgContainer=document.getElementById('image-receipt-preview-container');
+const badge=document.getElementById('image-size-badge');
+generatedReceiptDataUrl=null;generatedReceiptBlob=null;
+if(!receiptElement)throw new Error('Elemen struk tidak ditemukan.');
+if(typeof html2canvas==='undefined')throw new Error('html2canvas belum termuat.');
+try{
+const canvas=await html2canvas(receiptElement,{scale:3,useCORS:true,allowTaint:true,backgroundColor:'#ffffff',logging:false,imageTimeout:0});
+generatedReceiptDataUrl=canvas.toDataURL('image/jpeg',0.88);
+if(imgPreview)imgPreview.src=generatedReceiptDataUrl;
+imgContainer?.classList.remove('hidden');
+const response=await fetch(generatedReceiptDataUrl);
+generatedReceiptBlob=await response.blob();
+const sizeKb=(generatedReceiptBlob.size/1024).toFixed(1);
+if(badge)badge.innerText=`Ukuran Struk HD: ~${sizeKb} KB (Tajam & Jelas)`;
+return generatedReceiptDataUrl;
+}catch(err){console.error('Gagal membuat gambar struk:',err);generatedReceiptDataUrl=null;throw err}
+}
+
+function getLatestPosTransaction(){
+if(state.currentTransaction&&state.currentTransaction.type==='POS')return state.currentTransaction;
+return(state.transactions||[]).find(t=>t.type==='POS')||null;
+}
+
+async function shareReceiptWhatsAppImage(){
+const trx=getLatestPosTransaction();
+if(!trx)return alert('Belum ada transaksi. Silakan tekan Bayar / Simpan Transaksi terlebih dahulu.');
+state.currentTransaction=trx;
+openReceiptModal(trx);
+try{
+const dataUrl=await renderReceiptToImage();
+const response=await fetch(dataUrl);
+const blob=await response.blob();
+const file=new File([blob],`Struk_${trx.id||Date.now()}.jpg`,{type:blob.type||'image/jpeg'});
+if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){closeReceiptModal();await navigator.share({files:[file],title:'Struk transaksi',text:''});return}
+downloadReceiptImage();closeReceiptModal();
+alert('Browser HP ini belum mendukung berbagi gambar langsung. Gambar struk sudah diunduh. Buka WhatsApp, pilih pelanggan, lalu lampirkan gambar struk.');
+}catch(err){closeReceiptModal();if(err&&err.name==='AbortError')return;alert('Struk belum berhasil dibagikan. Pastikan koneksi dan izin berbagi HP aktif, lalu coba lagi.')}
+}
+
+function downloadReceiptImage(){
+if(!generatedReceiptDataUrl)return alert('Gambar struk sedang diproses, silakan tunggu...');
+const link=document.createElement('a');
+link.href=generatedReceiptDataUrl;
+link.download=`Struk_HD_AlManah_ZavierCell_${Date.now()}.jpg`;
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);
+}
+
+function accountById(id){return(state.accounts||[]).find(a=>String(a.id)===String(id))}
+function accountName(id){const a=accountById(id);return a?a.name:'Tidak dipilih'}
+
+function addLedger(accountId,delta,label,note,relatedId){
+const numericDelta=Number(delta)||0;
+if(!accountId||numericDelta===0)return;
+const account=accountById(accountId);
+if(!account)return;
+account.balance=(Number(account.balance)||0)+numericDelta;
+state.accountLedger=Array.isArray(state.accountLedger)?state.accountLedger:[];
+state.accountLedger.unshift({id:uid('LED'),date:new Date().toISOString(),accountId,delta:numericDelta,balanceAfter:account.balance,label:label||'Perubahan saldo',note:note||'',relatedId:relatedId||''});
+}
+
+function refreshAccountSelectors(){
+document.querySelectorAll('.account-select').forEach(sel=>{
+const old=sel.value;
+const placeholder=sel.options.length?sel.options[0].textContent:'Pilih akun';
+sel.innerHTML=`<option value="">${escapeHtml(placeholder)}</option>`+(state.accounts||[]).map(a=>`<option value="${escapeHtml(a.id)}">${escapeHtml(a.name)} — ${formatRp(a.balance||0)}</option>`).join('');
+if((state.accounts||[]).some(a=>String(a.id)===String(old)))sel.value=old;
+});
+}
+
+function addAccount(e){
+e.preventDefault();
+const nameEl=document.getElementById('acc-name');
+const typeEl=document.getElementById('acc-type');
+const openingEl=document.getElementById('acc-opening');
+const name=String(nameEl?.value||'').trim();
+const type=typeEl?.value||'Lainnya';
+const opening=parseNominal(openingEl?.value);
+if(!name)return alert('Nama akun wajib diisi.');
+if((state.accounts||[]).some(a=>String(a.name||'').toLowerCase()===name.toLowerCase()))return alert('Nama akun sudah ada. Gunakan nama lain.');
+const account={id:uid('ACC'),name,type,openingBalance:opening,balance:opening,createdAt:new Date().toISOString()};
+state.accounts=Array.isArray(state.accounts)?state.accounts:[];
+state.accounts.push(account);
+state.accountLedger=Array.isArray(state.accountLedger)?state.accountLedger:[];
+state.accountLedger.unshift({id:uid('LED'),date:new Date().toISOString(),accountId:account.id,delta:opening,balanceAfter:opening,label:'Saldo awal akun',note:'Saldo awal saat akun dibuat',relatedId:''});
+if(!saveDataChecked('Gagal menyimpan akun.'))return;
+if(nameEl)nameEl.value='';
+if(openingEl)openingEl.value='0';
+renderAccounts();
+refreshAccountSelectors();
+}
+
+function editAccount(id){
+const account=accountById(id);
+if(!account)return;
+const name=prompt('Edit nama akun:',account.name||'');
+if(name===null)return;
+const cleanName=String(name).trim();
+if(!cleanName)return alert('Nama akun tidak boleh kosong.');
+if((state.accounts||[]).some(a=>String(a.id)!==String(id)&&String(a.name||'').toLowerCase()===cleanName.toLowerCase()))return alert('Nama akun sudah digunakan. Gunakan nama lain.');
+const type=prompt('Edit jenis akun (Bank / E-Wallet / Kas Tunai / Lainnya):',account.type||'Lainnya');
+if(type===null)return;
+const allowedTypes=['Bank','E-Wallet','Kas Tunai','Lainnya'];
+const cleanType=allowedTypes.find(t=>t.toLowerCase()===String(type).trim().toLowerCase());
+if(!cleanType)return alert('Jenis akun harus Bank, E-Wallet, Kas Tunai, atau Lainnya.');
+const balanceText=prompt('Edit saldo akun secara langsung (angka saja):',String(Number(account.balance)||0));
+if(balanceText===null)return;
+const newBalance=parseNominal(balanceText);
+if(!Number.isFinite(newBalance)||newBalance<0)return alert('Saldo harus berupa angka nol atau lebih.');
+const oldBalance=Number(account.balance)||0;
+account.name=cleanName;
+account.type=cleanType;
+if(newBalance!==oldBalance)addLedger(id,newBalance-oldBalance,'Penyesuaian saldo manual','Saldo diubah melalui menu Edit Akun');
+if(!saveDataChecked('Gagal memperbarui akun.'))return;
+renderAccounts();
+refreshAccountSelectors();
+alert('Nama, jenis akun, dan saldo berhasil diperbarui.');
+}
+
+function deleteAccount(id){
+const account=accountById(id);
+if(!account)return;
+if(!confirm(`Hapus akun ${account.name} beserta saldo yang tercatat dan riwayat perubahan saldo akun ini? Riwayat transaksi penjualan/transfer yang sudah tercatat tidak ikut dihapus. Tindakan ini tidak dapat dibatalkan.`))return;
+state.accounts=(state.accounts||[]).filter(a=>String(a.id)!==String(id));
+state.accountLedger=(state.accountLedger||[]).filter(l=>String(l.accountId)!==String(id));
+if(!saveDataChecked('Gagal menghapus akun.'))return;
+renderAccounts();
+refreshAccountSelectors();
+updateDashboard();
+alert('Akun dan riwayat saldo akun berhasil dihapus.');
+}
+
+function deleteAccountLedgerEntry(id){
+const entry=(state.accountLedger||[]).find(l=>String(l.id)===String(id));
+if(!entry)return;
+if(!confirm('Hapus catatan riwayat saldo ini saja? Saldo akun tidak akan berubah.'))return;
+state.accountLedger=(state.accountLedger||[]).filter(l=>String(l.id)!==String(id));
+if(!saveDataChecked('Gagal menghapus riwayat saldo.'))return;
+renderAccounts();
+}
+
+function renderAccounts(){
+const accounts=state.accounts||[];
+const total=accounts.reduce((sum,a)=>sum+(Number(a.balance)||0),0);
+const totalEl=document.getElementById('accounts-total');
+if(totalEl)totalEl.textContent=formatRp(total);
+const countEl=document.getElementById('accounts-count');
+if(countEl)countEl.textContent=accounts.length+' akun';
+const list=document.getElementById('accounts-list');
+if(list){list.innerHTML=accounts.length?accounts.map(a=>`<div class="rounded-xl border border-gold-500/20 bg-dark-base/70 p-2"><div class="flex items-start justify-between gap-2"><div class="min-w-0"><p class="text-[9px] text-gray-400">${escapeHtml(a.type||'Lainnya')}</p><p class="text-xs font-bold text-white break-words">${escapeHtml(a.name)}</p><p class="text-sm font-extrabold text-gold-300">${formatRp(a.balance||0)}</p><p class="text-[8px] text-gray-500">Saldo awal: ${formatRp(a.openingBalance||0)}</p></div><div class="flex flex-col gap-1 shrink-0"><button type="button" data-id="${escapeHtml(a.id)}" onclick="editAccount(this.dataset.id)" class="inline-flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-lg bg-sky-500/20 border border-sky-300/50 text-white font-bold text-[10px] shadow-sm active:scale-95"><i class="fa-solid fa-pen-to-square"></i><span>Edit saldo</span></button><button type="button" data-id="${escapeHtml(a.id)}" onclick="deleteAccount(this.dataset.id)" class="inline-flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-lg bg-rose-500/15 border border-rose-400/40 text-rose-200 font-bold text-[10px] active:scale-95"><i class="fa-solid fa-trash-can"></i><span>Hapus akun</span></button></div></div></div>`).join(''):'<p class="text-[10px] text-gray-500">Belum ada akun. Tambahkan akun pertama di atas.</p>'}
+const ledger=document.getElementById('account-ledger-list');
+if(ledger){ledger.innerHTML=(state.accountLedger||[]).slice(0,30).map(l=>`<div class="flex justify-between gap-2 border-b border-gray-800 py-1"><div class="min-w-0"><p class="text-[9px] text-white">${escapeHtml(l.label||'Perubahan saldo')} · ${escapeHtml(accountName(l.accountId))}</p><p class="text-[8px] text-gray-500">${new Date(l.date).toLocaleString('id-ID')} · ${escapeHtml(l.note||'')}</p></div><div class="text-right shrink-0"><p class="text-[10px] font-bold ${Number(l.delta)>=0?'text-emerald-300':'text-ruby-luxury'}">${Number(l.delta)>=0?'+':'-'}${formatRp(Math.abs(Number(l.delta)||0))}</p><p class="text-[8px] text-gray-500">Sisa ${formatRp(l.balanceAfter||0)}</p><button type="button" data-id="${escapeHtml(l.id)}" onclick="deleteAccountLedgerEntry(this.dataset.id)" class="mt-1 text-[9px] text-rose-300 underline underline-offset-2">Hapus riwayat</button></div></div>`).join('')||'<p class="text-[10px] text-gray-500">Belum ada perubahan saldo.</p>'}
+refreshAccountSelectors();
+}
+</script><script>
+function saveTransferTransaction(e){
+e.preventDefault();
+const amount=parseNominal(document.getElementById('tf-amount')?.value);
+const adminFee=parseNominal(document.getElementById('tf-admin-fee')?.value);
+const bankFee=parseNominal(document.getElementById('tf-bank-fee')?.value);
+const bankName=document.getElementById('tf-bank-name')?.value||'';
+const accountNo=document.getElementById('tf-account-no')?.value||'';
+const note=document.getElementById('tf-note')?.value||'';
+const sourceAccount=document.getElementById('tf-source-account')?.value||'';
+const feeAccount=document.getElementById('tf-fee-account')?.value||'';
+if((state.accounts||[]).length&&!sourceAccount)return alert('Pilih rekening sumber dana untuk mencatat pengurangan saldo.');
+if((state.accounts||[]).length&&adminFee>0&&!feeAccount)return alert('Pilih akun penerima biaya jasa.');
+if(!(amount>0))return alert('Nominal transfer harus lebih dari nol.');
+const sourceAcc=sourceAccount?accountById(sourceAccount):null;
+if(sourceAcc&&Number(sourceAcc.balance||0)<amount+bankFee)return alert('Saldo rekening sumber tidak mencukupi untuk nominal transfer + biaya admin bank.');
+const trxId=uid('AZC-TF');
+if(sourceAccount){addLedger(sourceAccount,-amount,'Transfer ke pelanggan',`${bankName} ${accountNo} ${note}`,trxId);if(bankFee>0)addLedger(sourceAccount,-bankFee,'Biaya admin bank transfer',`${bankName} ${accountNo} ${note}`,trxId)}
+if(feeAccount&&adminFee>0)addLedger(feeAccount,adminFee,'Pendapatan biaya jasa transfer',note,trxId);
+state.transactions=Array.isArray(state.transactions)?state.transactions:[];
+state.transactions.unshift({id:trxId,date:new Date().toISOString(),type:'BANK_TRANSFER',category:'Transfer Pelanggan',amount,adminFee,bankFee,sourceAccount,feeAccount,note:`Ke: ${bankName} (${accountNo}) - ${note} [Jasa pelanggan: ${formatRp(adminFee)}] [Admin bank: ${formatRp(bankFee)}]`});
+if(!saveDataChecked('Gagal menyimpan transfer pelanggan.'))return;
+document.getElementById('form-transfer')?.reset();
+const tfAdmin=document.getElementById('tf-admin-fee');
+const tfBank=document.getElementById('tf-bank-fee');
+if(tfAdmin)tfAdmin.value='0';
+if(tfBank)tfBank.value='0';
+renderAccounts();
+refreshAccountSelectors();
+alert('Transfer pelanggan berhasil dicatat. Saldo akun sumber berkurang sebesar nominal transfer; biaya jasa dicatat sebagai pendapatan pada akun yang dipilih.');
+}
+
+function saveTarikTransaction(e){
+e.preventDefault();
+const amount=parseNominal(document.getElementById('tarik-amount')?.value);
+const adminFee=parseNominal(document.getElementById('tarik-admin-fee')?.value);
+const bankFee=parseNominal(document.getElementById('tarik-bank-fee')?.value);
+const source=document.getElementById('tarik-source')?.value||'';
+const note=document.getElementById('tarik-note')?.value||'';
+const incomingAccount=document.getElementById('tarik-in-account')?.value||'';
+const cashAccount=document.getElementById('tarik-cash-account')?.value||'';
+const feeAccount=document.getElementById('tarik-fee-account')?.value||'';
+if((state.accounts||[]).length&&(!incomingAccount||!cashAccount))return alert('Pilih akun penerima uang digital dan akun kas untuk uang tunai.');
+if((state.accounts||[]).length&&adminFee>0&&!feeAccount)return alert('Pilih akun penerima biaya jasa.');
+if(incomingAccount&&cashAccount&&incomingAccount===cashAccount)return alert('Akun penerima uang digital dan akun kas harus berbeda.');
+const cashAcc=cashAccount?accountById(cashAccount):null;
+if(cashAcc&&Number(cashAcc.balance||0)<amount)return alert('Saldo akun kas untuk pembayaran tunai tidak mencukupi.');
+const trxId=uid('AZC-TRK');
+if(incomingAccount){addLedger(incomingAccount,amount,'Dana digital diterima dari pelanggan',`${source} ${note}`,trxId);if(bankFee>0)addLedger(incomingAccount,-bankFee,'Biaya admin bank tarik tunai',`${source} ${note}`,trxId)}
+if(cashAccount)addLedger(cashAccount,-amount,'Uang tunai dibayarkan ke pelanggan',note,trxId);
+if(feeAccount&&adminFee>0)addLedger(feeAccount,adminFee,'Pendapatan biaya jasa tarik tunai',note,trxId);
+state.transactions=Array.isArray(state.transactions)?state.transactions:[];
+state.transactions.unshift({id:trxId,date:new Date().toISOString(),type:'BANK_TARIK',category:'Tarik Tunai Pelanggan',amount,adminFee,bankFee,incomingAccount,cashAccount,feeAccount,note:`Sumber: ${source} - ${note} [Jasa pelanggan: ${formatRp(adminFee)}] [Admin bank: ${formatRp(bankFee)}]`});
+if(!saveDataChecked('Gagal menyimpan tarik tunai.'))return;
+document.getElementById('form-tarik')?.reset();
+const tarikBank=document.getElementById('tarik-bank-fee');
+if(tarikBank)tarikBank.value='0';
+renderAccounts();
+refreshAccountSelectors();
+alert('Tarik tunai pelanggan berhasil dicatat. Dana digital bertambah, kas tunai berkurang, dan biaya jasa dicatat terpisah sesuai akun yang dipilih.');
+}
+
+function saveCashFlow(e){
+e.preventDefault();
+const type=document.getElementById('cf-type')?.value||'IN';
+const amount=parseNominal(document.getElementById('cf-amount')?.value);
+const category=document.getElementById('cf-category')?.value||'';
+const note=document.getElementById('cf-note')?.value||'';
+const accountId=document.getElementById('cf-account')?.value||'';
+if((state.accounts||[]).length&&!accountId)return alert('Pilih akun yang terkena perubahan saldo.');
+if(!(amount>0))return alert('Nominal harus lebih dari nol.');
+const acc=accountId?accountById(accountId):null;
+if(acc&&type==='OUT'&&Number(acc.balance||0)<amount)return alert('Saldo akun tidak mencukupi.');
+const trxId=uid('AZC-CF');
+if(accountId)addLedger(accountId,type==='OUT'?-amount:amount,type==='OUT'?'Pengeluaran operasional':'Pemasukan lain',`${category} ${note}`.trim(),trxId);
+state.transactions=Array.isArray(state.transactions)?state.transactions:[];
+state.transactions.unshift({id:trxId,date:new Date().toISOString(),type,category,amount,accountId,note});
+if(!saveDataChecked('Gagal menyimpan kas IN/OUT.'))return;
+document.getElementById('form-cash-flow')?.reset();
+alert('Kas Disimpan!');
+}
+
+function toggleProductStockFields(){
+const typeEl=document.getElementById('prod-type');
+const stockBox=document.getElementById('prod-stock-fields');
+if(!typeEl||!stockBox)return;
+const isPhysical=typeEl.value==='physical';
+stockBox.classList.toggle('hidden',!isPhysical);
+const requiredIds=['prod-unit','prod-pack-name','prod-per-pack','prod-stock-packs','prod-stock-loose'];
+stockBox.querySelectorAll('input').forEach(el=>{el.required=isPhysical&&requiredIds.includes(el.id)});
+}
+
+function saveProduct(e){
+e.preventDefault();
+const rawId=document.getElementById('prod-id')?.value||'';
+const type=document.getElementById('prod-type')?.value||'digital';
+const name=String(document.getElementById('prod-name')?.value||'').trim();
+const category=String(document.getElementById('prod-category')?.value||'').trim();
+const price=parseNominal(document.getElementById('prod-price')?.value);
+const hpp=parseNominal(document.getElementById('prod-hpp')?.value);
+if(!name)return alert('Nama produk wajib diisi.');
+if(!category)return alert('Kategori produk wajib diisi.');
+if(!(price>0))return alert('Harga jual harus lebih dari nol.');
+const id=rawId?String(rawId):Date.now().toString();
+const existing=(state.products||[]).find(p=>String(p.id)===String(id))||{};
+const product={...existing,id,name,category,price,hpp,type};
+if(type==='physical'){
+product.unit=String(document.getElementById('prod-unit')?.value||'').trim()||'pcs';
+product.packName=String(document.getElementById('prod-pack-name')?.value||'').trim()||'pack';
+product.perPack=Math.max(1,parseInt(document.getElementById('prod-per-pack')?.value,10)||1);
+product.stockPacks=Math.max(0,parseInt(document.getElementById('prod-stock-packs')?.value,10)||0);
+product.stockLoose=Math.max(0,parseInt(document.getElementById('prod-stock-loose')?.value,10)||0);
+product.packPrice=Math.max(0,parseNominal(document.getElementById('prod-pack-price')?.value));
+product.packHpp=Math.max(0,parseNominal(document.getElementById('prod-pack-hpp')?.value));
+}else{
+product.type='digital';
+delete product.unit;delete product.packName;delete product.perPack;delete product.stockPacks;delete product.stockLoose;delete product.packPrice;delete product.packHpp;
+}
+state.products=Array.isArray(state.products)?state.products:[];
+const existingIndex=state.products.findIndex(p=>String(p.id)===String(id));
+if(existingIndex>=0)state.products[existingIndex]=product;else state.products.push(product);
+if(!saveDataChecked('Gagal menyimpan produk.'))return;
+document.getElementById('form-product')?.reset();
+const prodId=document.getElementById('prod-id');
+const prodType=document.getElementById('prod-type');
+const perPack=document.getElementById('prod-per-pack');
+const stockPacks=document.getElementById('prod-stock-packs');
+const stockLoose=document.getElementById('prod-stock-loose');
+const packPrice=document.getElementById('prod-pack-price');
+const packHpp=document.getElementById('prod-pack-hpp');
+if(prodId)prodId.value='';
+if(prodType)prodType.value='digital';
+if(perPack)perPack.value=1;
+if(stockPacks)stockPacks.value=0;
+if(stockLoose)stockLoose.value=0;
+if(packPrice)packPrice.value=0;
+if(packHpp)packHpp.value=0;
+toggleProductStockFields();
+renderProductsTable();
+renderPOS();
+alert('Produk Disimpan!');
+}
+
+function editProduct(id){
+const p=(state.products||[]).find(item=>String(item.id)===String(id));
+if(!p)return;
+const setValue=(elementId,value)=>{const el=document.getElementById(elementId);if(el)el.value=value??''};
+setValue('prod-id',p.id);
+setValue('prod-name',p.name);
+setValue('prod-category',p.category);
+setValue('prod-type',p.type==='physical'?'physical':'digital');
+setValue('prod-unit',p.unit||'pcs');
+setValue('prod-pack-name',p.packName||'kardus');
+setValue('prod-per-pack',p.perPack||1);
+setValue('prod-stock-packs',p.stockPacks||0);
+setValue('prod-stock-loose',p.stockLoose||0);
+setValue('prod-price',p.price||0);
+setValue('prod-hpp',p.hpp||0);
+setValue('prod-pack-price',p.packPrice||0);
+setValue('prod-pack-hpp',p.packHpp||0);
+['prod-price','prod-hpp','prod-pack-price','prod-pack-hpp'].forEach(elId=>{const el=document.getElementById(elId);if(el)formatNominalInput(el)});
+toggleProductStockFields();
+document.getElementById('form-product')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function deleteProduct(id){
+if(!confirm('Hapus produk?'))return;
+state.products=(state.products||[]).filter(p=>String(p.id)!==String(id));
+if(!saveDataChecked('Gagal menghapus produk.'))return;
+renderProductsTable();
+renderPOS();
+}
+
+function renderProductsTable(){
+const body=document.getElementById('products-table-body');
+if(!body)return;
+body.innerHTML=(state.products||[]).map(p=>{
+const stockInfo=p.type==='physical'?`<div class="text-[8px] text-emerald-300">${formatPhysicalStock(p)}<br>Total: ${getTotalStock(p)} ${escapeHtml(p.unit||'pcs')}</div>`:'<div class="text-[8px] text-gray-500">Tanpa stok</div>';
+const profit=(Number(p.price)||0)-(Number(p.hpp)||0);
+const packPriceLabel=p.type==='physical'&&Number(p.packPrice)>0?`<br><span class="text-[8px]">${formatRp(p.packPrice)}/${escapeHtml(p.packName||'pack')}</span>`:'';
+return`<tr class="border-b border-gray-800"><td class="p-1 font-bold text-white">${escapeHtml(p.name)}<br>${stockInfo}</td><td class="p-1 text-emerald-400 font-semibold">${formatRp(p.price)}${packPriceLabel}</td><td class="p-1 text-gold-300">${formatRp(profit)}</td><td class="p-1 text-right"><button data-id="${escapeHtml(p.id)}" onclick="editProduct(this.dataset.id)" class="text-gold-400 mr-1.5"><i class="fa-solid fa-pen"></i></button><button data-id="${escapeHtml(p.id)}" onclick="deleteProduct(this.dataset.id)" class="text-ruby-luxury"><i class="fa-solid fa-trash"></i></button></td></tr>`;
+}).join('');
+}
+
+function renderReports(){
+const startDate=document.getElementById('filter-date-start')?.value||'';
+const endDate=document.getElementById('filter-date-end')?.value||'';
+let filtered=state.transactions||[];
+if(startDate)filtered=filtered.filter(t=>new Date(t.date)>=new Date(startDate));
+if(endDate)filtered=filtered.filter(t=>new Date(t.date)<=new Date(endDate+'T23:59:59'));
+const body=document.getElementById('reports-table-body');
+const totalEl=document.getElementById('reports-total-amount');
+const journalTotal=filtered.reduce((sum,t)=>{
+const amount=Number(t.amount)||0;
+const adminFee=Number(t.adminFee)||0;
+if(['OUT','MODAL_WITHDRAW'].includes(t.type))return sum-amount;
+if(['BANK_TRANSFER','BANK_TARIK'].includes(t.type))return sum+amount+adminFee;
+return sum+amount;
+},0);
+if(totalEl)totalEl.innerText=formatRp(journalTotal);
+if(!body)return;
+body.innerHTML=filtered.map(t=>{
+let badgeClass='text-emerald-400 bg-emerald-500/10 border-emerald-500/30';
+let displayType=t.type;
+let displayAmount=Number(t.amount)||0;
+if(t.type==='BANK_TRANSFER'||t.type==='BANK_TARIK'){displayType=t.type==='BANK_TRANSFER'?'TRANSFER (MASUK JASA)':'TARIK TUNAI (MASUK JASA)';displayAmount=displayAmount+(Number(t.adminFee)||0)}else if(['OUT','MODAL_WITHDRAW'].includes(t.type)){badgeClass='text-ruby-luxury bg-ruby-500/10 border-ruby-500/30';displayAmount=-displayAmount}
+return`<tr class="border-b border-gray-800"><td class="p-1"><span class="px-1 py-0.5 rounded text-[7px] font-bold border ${badgeClass}">${escapeHtml(displayType)}</span></td><td class="p-1"><p class="font-bold text-white leading-tight">${escapeHtml(t.category||'-')}</p><p class="text-[7px] text-gray-500">${escapeHtml(t.note||'')}</p></td><td class="p-1 font-bold ${displayAmount>=0?'text-emerald-300':'text-ruby-luxury'}">${formatRp(displayAmount)}</td><td class="p-1 text-right"><button data-id="${escapeHtml(t.id)}" onclick="deleteTransaction(this.dataset.id)" class="text-ruby-luxury"><i class="fa-solid fa-xmark"></i></button></td></tr>`;
+}).join('');
+}
+
+function deleteTransaction(id){
+const trx=(state.transactions||[]).find(t=>String(t.id)===String(id));
+if(!trx)return;
+if(!confirm('Hapus transaksi? Jika transaksi ini mengubah saldo akun, sistem akan membuat pembalikan saldo otomatis. Untuk transaksi POS, stok barang fisik akan dikembalikan.'))return;
+if(trx.type==='POS'){(trx.items||[]).forEach(item=>{if(item.type!=='physical')return;const prod=(state.products||[]).find(p=>String(p.id)===String(item.id));if(prod){const units=(Number(item.qty)||0)*(Number(item.factor)||1);addPhysicalStock(prod,units)}})}
+const linked=(state.accountLedger||[]).filter(l=>String(l.relatedId)===String(id));
+linked.forEach(l=>{addLedger(l.accountId,-Number(l.delta||0),'Pembalikan transaksi yang dihapus',`Pembalikan untuk ${id}`,`REV-${id}`)});
+state.transactions=(state.transactions||[]).filter(t=>String(t.id)!==String(id));
+if(!saveDataChecked('Gagal menghapus transaksi.'))return;
+refreshAllViews();
+}
+
+function csvEscape(value){return'"'+String(value??'').replace(/"/g,'""')+'"'}
+
+function exportCSV(){
+const headers=['ID','Tanggal','Tipe','Kategori','Nominal','Biaya_Jasa','Biaya_Bank','Akun','Keterangan'];
+const rows=(state.transactions||[]).map(t=>{
+let nominal=Number(t.amount)||0;
+if(['OUT','MODAL_WITHDRAW'].includes(t.type))nominal=-nominal;
+if(['BANK_TRANSFER','BANK_TARIK'].includes(t.type))nominal=nominal+(Number(t.adminFee)||0);
+const account=t.accountId||t.sourceAccount||t.incomingAccount||t.cashAccount||'';
+return[t.id||'',t.date||'',t.type||'',t.category||'',nominal,Number(t.adminFee)||0,Number(t.bankFee)||0,account,t.note||''];
+});
+const csv=[headers,...rows].map(row=>row.map(csvEscape).join(',')).join('\n');
+const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+const url=window.URL.createObjectURL(blob);
+const a=document.createElement('a');
+a.setAttribute('href',url);
+a.setAttribute('download',`Jurnal_AlManah_${Date.now()}.csv`);
+document.body.appendChild(a);
+a.click();
+a.remove();
+setTimeout(()=>window.URL.revokeObjectURL(url),1000);
+}
+
+function resetDataPrompt(){
+if(!confirm('Reset seluruh data Al Amanah/Zavier Cell?'))return;
+try{localStorage.clear();location.reload()}catch(err){alert('Gagal reset data: '+err.message)}
+}
+
+function refreshAllViews(){
+updateDashboard();
+if(document.getElementById('pos-products-grid'))renderPOSProducts();
+if(document.getElementById('products-table-body'))renderProductsTable();
+if(document.getElementById('reports-table-body'))renderReports();
+if(document.getElementById('accounts-list'))renderAccounts();
+refreshAccountSelectors();
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+startLiveClock();
+if(document.getElementById('prod-type'))toggleProductStockFields();
+applyRoleUI();
+updateDashboard();
+switchTab('pos');
+
+// Login Firebase yang pernah berhasil biasanya tersimpan di browser/perangkat.
+// Karena itu sinkronisasi dicoba otomatis tanpa meminta email/kata sandi lagi.
+if(cloudAuth){
+  cloudAuth.onAuthStateChanged(user => {
+    if(user) resumeFirebaseSyncAutomatically(user);
+    else openCloudLoginModal();
+  });
+}else{
+  openCloudLoginModal();
+}
+});
+</script>
+</body>
+</html>
